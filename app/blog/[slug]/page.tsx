@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogPostView } from "@/components/pages/BlogPostView";
 import { BLOG_POSTS, getBlogPostBySlug } from "@/data/blogPosts";
+import { SITE_OG_IMAGE } from "@/lib/site";
 
 type Params = { slug: string };
 
@@ -39,7 +40,14 @@ export async function generateMetadata({
           alt: post.imageAlt ?? post.title,
         },
       ]
-    : undefined;
+    : [
+        {
+          url: SITE_OG_IMAGE,
+          width: 1600,
+          height: 730,
+          alt: "WrenchlyTools online utility toolbox",
+        },
+      ];
 
   return {
     title: post.title,
@@ -57,10 +65,10 @@ export async function generateMetadata({
       images,
     },
     twitter: {
-      card: post.image ? "summary_large_image" : "summary",
+      card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: post.image ? [post.image] : undefined,
+      images: post.image ? [post.image] : [SITE_OG_IMAGE],
     },
   };
 }

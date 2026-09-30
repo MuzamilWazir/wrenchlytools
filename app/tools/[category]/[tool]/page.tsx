@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ToolPageView } from "@/components/pages/ToolPageView";
 import { CATEGORIES } from "@/data/categories";
 import { TOOLS_REGISTRY, getToolBySlug } from "@/data/toolsRegistry";
+import { SITE_OG_IMAGE } from "@/lib/site";
 import { ToolCategory } from "@/types/tools";
 
 type Params = { category: string; tool: string };
@@ -40,11 +41,20 @@ export async function generateMetadata({
       title: `${tool.name} — Free Online Tool | WrenchlyTools`,
       description,
       url: tool.route,
+      images: [
+        {
+          url: SITE_OG_IMAGE,
+          width: 1600,
+          height: 730,
+          alt: "WrenchlyTools online utility toolbox",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${tool.name} — Free Online Tool | WrenchlyTools`,
       description,
+      images: [SITE_OG_IMAGE],
     },
   };
 }

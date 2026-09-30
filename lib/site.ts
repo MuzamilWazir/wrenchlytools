@@ -1,6 +1,7 @@
 export const SITE_NAME = 'WrenchlyTools';
 export const SITE_DESCRIPTION =
   'The all-in-one digital utility toolbox. Everyday tools for text, images, calculators, generators, developer tasks, converters, and PDFs — done in seconds.';
+export const SITE_OG_IMAGE = '/ogimage.png';
 
 /**
  * Absolute base URL used for canonical links, Open Graph URLs and JSON-LD.
