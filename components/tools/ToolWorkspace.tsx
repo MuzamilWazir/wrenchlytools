@@ -23,10 +23,10 @@ function AdSlot({ position }: { position: 'top' | 'bottom' }) {
 
   useEffect(() => {
     const slot = slotRef.current;
-    const adKey = position === 'top'
-      ? '78fa117d96032cebb4a821fe66743a91'
-      : process.env.NEXT_PUBLIC_HIGHREVENUE_BOTTOM_AD_KEY;
-    if (!slot || !adKey) return;
+    const adConfig = position === 'top'
+      ? { key: '78fa117d96032cebb4a821fe66743a91', height: 50, width: 320 }
+      : { key: '9bd6d766fd5c9ae406c960307ed5978a', height: 250, width: 300 };
+    if (!slot) return;
 
     let cancelled = false;
     let script: HTMLScriptElement | null = null;
@@ -50,15 +50,15 @@ function AdSlot({ position }: { position: 'top' | 'bottom' }) {
           };
 
           adWindow.atOptions = {
-            key: adKey,
+            key: adConfig.key,
             format: 'iframe',
-            height: 50,
-            width: 320,
+            height: adConfig.height,
+            width: adConfig.width,
             params: {},
           };
 
           script = document.createElement('script');
-          script.src = `https://www.highrevenueformat.com/${adKey}/invoke.js`;
+          script.src = `https://www.highrevenueformat.com/${adConfig.key}/invoke.js`;
           script.async = true;
           script.onload = () => resolve();
           script.onerror = () => resolve();
@@ -77,7 +77,7 @@ function AdSlot({ position }: { position: 'top' | 'bottom' }) {
       ref={slotRef}
       aria-label="Advertisement"
       data-ad-slot={`tool-${position}`}
-      className="mx-auto mb-6 flex h-12.5 w-80 max-w-full items-center justify-center overflow-hidden border border-dashed border-stone-300 bg-stone-50/70 text-[10px] font-medium uppercase text-stone-400"
+      className={`mx-auto mb-6 flex ${position === 'top' ? 'h-12.5 w-80' : 'h-62.5 w-75'} max-w-full items-center justify-center overflow-hidden border border-dashed border-stone-300 bg-stone-50/70 text-[10px] font-medium uppercase text-stone-400`}
     >
       <span>Advertisement</span>
     </aside>
