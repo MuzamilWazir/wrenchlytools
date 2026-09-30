@@ -1,0 +1,178 @@
+@import "tailwindcss";
+@import "swiper/css";
+@import "swiper/css/pagination";
+
+/*
+ * Moss & Clay palette — light theme only.
+ * Every pair used for text clears WCAG AA (4.5:1) on its intended surface;
+ * borders are decorative and intentionally sit below 3:1.
+ */
+@theme {
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-jetbrains);
+
+  /* Warm neutral ramp (backgrounds, borders, secondary text) */
+  --color-stone-50: #faf8f3;
+  --color-stone-100: #f4f1ea;
+  --color-stone-200: #e9e5da;
+  --color-stone-300: #d8d2c2;
+  --color-stone-400: #b9b2a0;
+  --color-stone-500: #8e8878;
+  --color-stone-600: #5d6b65;
+  --color-stone-700: #455450;
+  --color-stone-800: #2c3a36;
+  --color-stone-900: #1b2a25;
+
+  /* Primary — moss green */
+  --color-moss-50: #eaf2ee;
+  --color-moss-100: #d3e6de;
+  --color-moss-200: #a7cdc0;
+  --color-moss-300: #6fae9b;
+  --color-moss-400: #2f8b73;
+  --color-moss-500: #0e6b55;
+  --color-moss-600: #0c5d4a;
+  --color-moss-700: #0a4d3d;
+  --color-moss-800: #083e31;
+  --color-moss-900: #063127;
+
+  /* Secondary accent — burnt clay */
+  --color-clay-100: #ffb855;
+  --color-clay-200: #ff9444;
+  --color-clay-300: #eb7c39;
+  --color-clay-400: #d47034;
+  --color-clay-500: #c1662f;
+  --color-clay-600: #ae5c2a;
+  --color-clay-700: #934e24;
+  --color-clay-800: #783f1d;
+
+  /* Semantic aliases */
+  --color-background: var(--color-stone-100);
+  --color-surface: #ffffff;
+  --color-ink: var(--color-stone-900);
+  --color-muted: var(--color-stone-600);
+  --color-line: var(--color-stone-300);
+  --color-primary: var(--color-moss-500);
+  --color-accent: var(--color-clay-500);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+    min-height: 100vh;
+    background-color: var(--color-background);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  code, pre, kbd, samp, .font-mono {
+    font-family: var(--font-jetbrains), monospace;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 70%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-stone-300);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-stone-400);
+}
+
+.tool-swiper {
+  overflow: hidden;
+}
+
+.tool-swiper.swiper-initialized {
+  padding-bottom: 44px;
+}
+
+/*
+ * Pre-hydration fallback.
+ * Swiper only assigns slide widths once its JS runs. Without these rules every
+ * slide renders at 100% width inside a flex row that is clipped by
+ * `overflow: hidden`, so the carousel would flash as a single full-width card
+ * before snapping into place. These flex-basis values mirror the
+ * `slidesPerView` breakpoints and are discarded once Swiper marks itself
+ * initialized.
+ */
+.tool-swiper:not(.swiper-initialized) .swiper-slide {
+  flex: 0 0 83.3%;
+}
+
+@media (min-width: 480px) {
+  .tool-swiper:not(.swiper-initialized) .swiper-slide {
+    flex: 0 0 52.6%;
+  }
+}
+
+@media (min-width: 640px) {
+  .tool-swiper:not(.swiper-initialized) .swiper-slide {
+    flex: 0 0 40%;
+  }
+}
+
+@media (min-width: 900px) {
+  .tool-swiper:not(.swiper-initialized) .swiper-slide {
+    flex: 0 0 31.25%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .tool-swiper:not(.swiper-initialized) .swiper-slide {
+    flex: 0 0 25%;
+  }
+}
+
+.tool-swiper .swiper-pagination {
+  bottom: 0;
+}
+
+.tool-swiper .swiper-pagination-bullet {
+  background: var(--color-moss-500);
+  opacity: 0.28;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.tool-swiper .swiper-pagination-bullet-active {
+  background: var(--color-moss-500);
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-swiper .swiper-wrapper,
+  .tool-swiper .swiper-slide {
+    transition: none !important;
+  }
+}
