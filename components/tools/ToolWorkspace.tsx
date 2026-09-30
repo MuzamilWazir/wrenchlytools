@@ -21,7 +21,7 @@ function AdSlot({ position }: { position: 'top' | 'bottom' }) {
     <aside
       aria-label="Advertisement"
       data-ad-slot={`tool-${position}`}
-      className="mx-auto mb-6 flex min-h-25 w-full max-w-242.5 items-center justify-center border border-dashed border-stone-300 bg-stone-50/70 text-[10px] font-medium uppercase text-stone-400 sm:min-h-22.5"
+      className="mx-auto mb-6 flex h-12.5 w-full max-w-80 items-center justify-center border border-dashed border-stone-300 bg-stone-50/70 text-[10px] font-medium uppercase text-stone-400 sm:h-22.5 sm:max-w-182"
     >
       Advertisement
     </aside>
