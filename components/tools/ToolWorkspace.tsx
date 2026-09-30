@@ -16,6 +16,18 @@ interface ToolWorkspaceProps {
   children: React.ReactNode;
 }
 
+function AdSlot({ position }: { position: 'top' | 'bottom' }) {
+  return (
+    <aside
+      aria-label="Advertisement"
+      data-ad-slot={`tool-${position}`}
+      className="mx-auto mb-6 flex min-h-25 w-full max-w-242.5 items-center justify-center border border-dashed border-stone-300 bg-stone-50/70 text-[10px] font-medium uppercase text-stone-400 sm:min-h-22.5"
+    >
+      Advertisement
+    </aside>
+  );
+}
+
 export function ToolWorkspace({ tool, children }: ToolWorkspaceProps) {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const favorite = useFavoriteTools(tool.slug);
@@ -81,10 +93,14 @@ export function ToolWorkspace({ tool, children }: ToolWorkspaceProps) {
         </div>
       </div>
 
+      <AdSlot position="top" />
+
       {/* Main interactive tool workspace */}
       <div className="mb-10 rounded-2xl border border-line bg-white p-4 shadow-[0_1px_2px_rgba(27,42,37,0.04),0_10px_28px_-18px_rgba(27,42,37,0.25)] sm:p-6">
         {children}
       </div>
+
+      <AdSlot position="bottom" />
 
       {/* How to use */}
       {tool.howToUse && tool.howToUse.length > 0 && (
