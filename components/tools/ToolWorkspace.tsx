@@ -41,7 +41,6 @@ function AdSlot({ position }: { position: 'top' | 'bottom' }) {
         width={adConfig.width}
         height={adConfig.height}
         srcDoc={adDocument}
-        sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
         referrerPolicy="strict-origin-when-cross-origin"
         className="block max-w-full border-0"
       />
