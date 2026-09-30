@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bookmark, Shield, HelpCircle, CheckCircle2, ChevronDown } from 'lucide-react';
 import { Breadcrumbs } from '@/components/navigation/Breadcrumbs';
 import { ToolDefinition } from '@/types/tools';
@@ -16,70 +16,35 @@ interface ToolWorkspaceProps {
   children: React.ReactNode;
 }
 
-let adScriptQueue = Promise.resolve();
-
 function AdSlot({ position }: { position: 'top' | 'bottom' }) {
-  const slotRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const slot = slotRef.current;
-    const adConfig = position === 'top'
-      ? { key: '78fa117d96032cebb4a821fe66743a91', height: 50, width: 320 }
-      : { key: '9bd6d766fd5c9ae406c960307ed5978a', height: 250, width: 300 };
-    if (!slot) return;
-
-    let cancelled = false;
-    let script: HTMLScriptElement | null = null;
-
-    adScriptQueue = adScriptQueue.then(
-      () =>
-        new Promise<void>((resolve) => {
-          if (cancelled) {
-            resolve();
-            return;
-          }
-
-          const adWindow = window as Window & {
-            atOptions?: {
-              key: string;
-              format: string;
-              height: number;
-              width: number;
-              params: Record<string, never>;
-            };
-          };
-
-          adWindow.atOptions = {
-            key: adConfig.key,
-            format: 'iframe',
-            height: adConfig.height,
-            width: adConfig.width,
-            params: {},
-          };
-
-          script = document.createElement('script');
-          script.src = `https://www.highrevenueformat.com/${adConfig.key}/invoke.js`;
-          script.async = true;
-          script.onload = () => resolve();
-          script.onerror = () => resolve();
-          slot.appendChild(script);
-        }),
-    );
-
-    return () => {
-      cancelled = true;
-      script?.remove();
-    };
-  }, [position]);
+  const adConfig = position === 'top'
+    ? { key: '78fa117d96032cebb4a821fe66743a91', height: 50, width: 320 }
+    : { key: '9bd6d766fd5c9ae406c960307ed5978a', height: 250, width: 300 };
+  const adOptions = JSON.stringify({
+    key: adConfig.key,
+    format: 'iframe',
+    height: adConfig.height,
+    width: adConfig.width,
+    params: {},
+  });
+  const adUrl = `https://www.highrevenueformat.com/${adConfig.key}/invoke.js`;
+  const adDocument = `<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body style="margin:0;overflow:hidden"><script>window.atOptions=${adOptions};</script><script src="${adUrl}"></script></body></html>`;
 
   return (
     <aside
-      ref={slotRef}
       aria-label="Advertisement"
       data-ad-slot={`tool-${position}`}
       className={`mx-auto mb-6 flex ${position === 'top' ? 'h-12.5 w-80' : 'h-62.5 w-75'} max-w-full items-center justify-center overflow-hidden border border-dashed border-stone-300 bg-stone-50/70 text-[10px] font-medium uppercase text-stone-400`}
     >
-      <span>Advertisement</span>
+      <iframe
+        title={`${position === 'top' ? 'Top banner' : 'Bottom rectangle'} advertisement`}
+        width={adConfig.width}
+        height={adConfig.height}
+        srcDoc={adDocument}
+        sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+        referrerPolicy="strict-origin-when-cross-origin"
+        className="block max-w-full border-0"
+      />
     </aside>
   );
 }
