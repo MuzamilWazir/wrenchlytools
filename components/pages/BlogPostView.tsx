@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { BlogPost } from '@/data/blogPosts';
+import { BlogContent } from '@/components/pages/BlogContent';
 
 export function BlogPostView({ post }: { post: BlogPost }) {
   return (
@@ -26,7 +27,7 @@ export function BlogPostView({ post }: { post: BlogPost }) {
       </div>
 
       {post.image && (
-        <div className="relative aspect-[1200/630] w-full overflow-hidden rounded-xl bg-moss-50">
+        <div className="relative aspect-1200/630 w-full overflow-hidden rounded-xl bg-moss-50">
           <Image
             src={post.image}
             alt={post.imageAlt ?? post.title}
@@ -38,17 +39,8 @@ export function BlogPostView({ post }: { post: BlogPost }) {
         </div>
       )}
 
-      <div className="prose text-sm leading-relaxed text-stone-700 space-y-4 pt-4 border-t border-line">
-        {post.content.split('\n\n').map((para, i) => {
-          if (para.startsWith('### ')) {
-            return (
-              <h3 key={i} className="text-lg font-bold text-ink pt-2">
-                {para.replace('### ', '')}
-              </h3>
-            );
-          }
-          return <p key={i}>{para}</p>;
-        })}
+      <div className="pt-6 border-t border-line">
+        <BlogContent content={post.content} />
       </div>
     </div>
   );
