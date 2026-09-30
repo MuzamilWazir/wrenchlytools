@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { BookOpen, ArrowRight } from 'lucide-react';
 import { BLOG_POSTS } from '@/data/blogPosts';
 
@@ -23,13 +24,26 @@ export function BlogIndex() {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group flex flex-col rounded-2xl border border-line bg-white p-5 transition-all hover:border-moss-400 hover:shadow-[0_12px_28px_-18px_rgba(27,42,37,0.45)]"
+            className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-all hover:border-moss-400 hover:shadow-[0_12px_28px_-18px_rgba(27,42,37,0.45)]"
           >
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-moss-50 text-moss-600 ring-1 ring-inset ring-moss-100 transition-colors group-hover:bg-moss-500 group-hover:text-white group-hover:ring-moss-500">
-              <BookOpen className="h-5 w-5" />
-            </div>
+            {post.image ? (
+              <div className="relative aspect-[1200/630] w-full overflow-hidden bg-moss-50">
+                <Image
+                  src={post.image}
+                  alt={post.imageAlt ?? post.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                />
+              </div>
+            ) : (
+              <div className="mx-5 mt-5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-moss-50 text-moss-600 ring-1 ring-inset ring-moss-100 transition-colors group-hover:bg-moss-500 group-hover:text-white group-hover:ring-moss-500">
+                <BookOpen className="h-5 w-5" />
+              </div>
+            )}
 
-            <div className="mt-3.5 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wide text-stone-500">
+            <div className="flex flex-1 flex-col p-5">
+            <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wide text-stone-500">
               <span className="truncate text-moss-700">{post.category}</span>
               <span aria-hidden="true">·</span>
               <span className="shrink-0">{post.readTime}</span>
@@ -45,6 +59,7 @@ export function BlogIndex() {
             <div className="mt-3.5 flex items-center gap-1 border-t border-line pt-3 text-xs font-semibold text-moss-600">
               Read Guide
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+            </div>
             </div>
           </Link>
         ))}

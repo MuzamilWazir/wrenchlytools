@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { BlogPost } from '@/data/blogPosts';
 
 export function BlogPostView({ post }: { post: BlogPost }) {
@@ -23,6 +24,19 @@ export function BlogPostView({ post }: { post: BlogPost }) {
           {post.title}
         </h1>
       </div>
+
+      {post.image && (
+        <div className="relative aspect-[1200/630] w-full overflow-hidden rounded-xl bg-moss-50">
+          <Image
+            src={post.image}
+            alt={post.imageAlt ?? post.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 768px"
+            priority
+            className="object-cover"
+          />
+        </div>
+      )}
 
       <div className="prose text-sm leading-relaxed text-stone-700 space-y-4 pt-4 border-t border-line">
         {post.content.split('\n\n').map((para, i) => {
