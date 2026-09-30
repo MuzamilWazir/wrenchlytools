@@ -16,40 +16,61 @@ interface ToolWorkspaceProps {
   children: React.ReactNode;
 }
 
+let adScriptQueue = Promise.resolve();
+
 function AdSlot({ position }: { position: 'top' | 'bottom' }) {
   const slotRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const slot = slotRef.current;
-    if (!slot) return;
+    const adKey = position === 'top'
+      ? '78fa117d96032cebb4a821fe66743a91'
+      : process.env.NEXT_PUBLIC_HIGHREVENUE_BOTTOM_AD_KEY;
+    if (!slot || !adKey) return;
 
-    const adWindow = window as Window & {
-      atOptions?: {
-        key: string;
-        format: string;
-        height: number;
-        width: number;
-        params: Record<string, never>;
-      };
-    };
+    let cancelled = false;
+    let script: HTMLScriptElement | null = null;
 
-    adWindow.atOptions = {
-      key: '78fa117d96032cebb4a821fe66743a91',
-      format: 'iframe',
-      height: 50,
-      width: 320,
-      params: {},
-    };
+    adScriptQueue = adScriptQueue.then(
+      () =>
+        new Promise<void>((resolve) => {
+          if (cancelled) {
+            resolve();
+            return;
+          }
 
-    const script = document.createElement('script');
-    script.src = 'https://www.highrevenueformat.com/78fa117d96032cebb4a821fe66743a91/invoke.js';
-    script.async = true;
-    slot.appendChild(script);
+          const adWindow = window as Window & {
+            atOptions?: {
+              key: string;
+              format: string;
+              height: number;
+              width: number;
+              params: Record<string, never>;
+            };
+          };
+
+          adWindow.atOptions = {
+            key: adKey,
+            format: 'iframe',
+            height: 50,
+            width: 320,
+            params: {},
+          };
+
+          script = document.createElement('script');
+          script.src = `https://www.highrevenueformat.com/${adKey}/invoke.js`;
+          script.async = true;
+          script.onload = () => resolve();
+          script.onerror = () => resolve();
+          slot.appendChild(script);
+        }),
+    );
 
     return () => {
-      script.remove();
+      cancelled = true;
+      script?.remove();
     };
-  }, []);
+  }, [position]);
 
   return (
     <aside
