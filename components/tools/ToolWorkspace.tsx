@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Bookmark, Shield, HelpCircle, CheckCircle2, ChevronDown } from 'lucide-react';
 import { Breadcrumbs } from '@/components/navigation/Breadcrumbs';
 import { ToolDefinition } from '@/types/tools';
@@ -17,13 +17,48 @@ interface ToolWorkspaceProps {
 }
 
 function AdSlot({ position }: { position: 'top' | 'bottom' }) {
+  const slotRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const slot = slotRef.current;
+    if (!slot) return;
+
+    const adWindow = window as Window & {
+      atOptions?: {
+        key: string;
+        format: string;
+        height: number;
+        width: number;
+        params: Record<string, never>;
+      };
+    };
+
+    adWindow.atOptions = {
+      key: '78fa117d96032cebb4a821fe66743a91',
+      format: 'iframe',
+      height: 50,
+      width: 320,
+      params: {},
+    };
+
+    const script = document.createElement('script');
+    script.src = 'https://www.highrevenueformat.com/78fa117d96032cebb4a821fe66743a91/invoke.js';
+    script.async = true;
+    slot.appendChild(script);
+
+    return () => {
+      script.remove();
+    };
+  }, []);
+
   return (
     <aside
+      ref={slotRef}
       aria-label="Advertisement"
       data-ad-slot={`tool-${position}`}
-      className="mx-auto mb-6 flex h-12.5 w-full max-w-80 items-center justify-center border border-dashed border-stone-300 bg-stone-50/70 text-[10px] font-medium uppercase text-stone-400 sm:h-22.5 sm:max-w-182"
+      className="mx-auto mb-6 flex h-12.5 w-80 max-w-full items-center justify-center overflow-hidden border border-dashed border-stone-300 bg-stone-50/70 text-[10px] font-medium uppercase text-stone-400"
     >
-      Advertisement
+      <span>Advertisement</span>
     </aside>
   );
 }
