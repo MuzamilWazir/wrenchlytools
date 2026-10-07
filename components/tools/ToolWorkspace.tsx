@@ -1,64 +1,28 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { Bookmark, Shield, HelpCircle, CheckCircle2, ChevronDown } from 'lucide-react';
+import { Shield, HelpCircle, CheckCircle2, ChevronDown } from 'lucide-react';
 import { Breadcrumbs } from '@/components/navigation/Breadcrumbs';
 import { ToolDefinition } from '@/types/tools';
 import { recordToolVisit } from '@/lib/storage';
-import { toggleFavorite, useFavoriteTools } from '@/lib/useLocalStore';
 import { CATEGORIES } from '@/data/categories';
 import { getToolBySlug } from '@/data/toolsRegistry';
 import { Icon } from '@/components/ui/Icon';
 import { ToolRow } from '@/components/ui/ToolCard';
+import { AdSlot } from '@/components/tools/AdSlot';
+import { FavoriteButton } from '@/components/tools/FavoriteButton';
 
 interface ToolWorkspaceProps {
   tool: ToolDefinition;
   children: React.ReactNode;
 }
 
-function AdSlot({ position }: { position: 'top' | 'bottom' }) {
-  const adConfig = position === 'top'
-    ? { key: '78fa117d96032cebb4a821fe66743a91', height: 50, width: 320 }
-    : { key: '9bd6d766fd5c9ae406c960307ed5978a', height: 250, width: 300 };
-  const adOptions = JSON.stringify({
-    key: adConfig.key,
-    format: 'iframe',
-    height: adConfig.height,
-    width: adConfig.width,
-    params: {},
-  });
-  const adUrl = `https://www.highrevenueformat.com/${adConfig.key}/invoke.js`;
-  const adDocument = `<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body style="margin:0;overflow:hidden"><script>window.atOptions=${adOptions};</script><script src="${adUrl}"></script></body></html>`;
-
-  return (
-    <aside
-      aria-label="Advertisement"
-      data-ad-slot={`tool-${position}`}
-      className={`mx-auto mb-6 flex ${position === 'top' ? 'h-12.5 w-80' : 'h-62.5 w-75'} max-w-full items-center justify-center overflow-hidden border border-dashed border-stone-300 bg-stone-50/70 text-[10px] font-medium uppercase text-stone-400`}
-    >
-      <iframe
-        title={`${position === 'top' ? 'Top banner' : 'Bottom rectangle'} advertisement`}
-        width={adConfig.width}
-        height={adConfig.height}
-        srcDoc={adDocument}
-        referrerPolicy="strict-origin-when-cross-origin"
-        className="block max-w-full border-0"
-      />
-    </aside>
-  );
-}
-
 export function ToolWorkspace({ tool, children }: ToolWorkspaceProps) {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-  const favorite = useFavoriteTools(tool.slug);
 
   useEffect(() => {
     recordToolVisit(tool.slug);
   }, [tool.slug]);
-
-  const handleToggleFavorite = () => {
-    toggleFavorite(tool.slug);
-  };
 
   const category = CATEGORIES[tool.category];
   const relatedTools = (tool.relatedToolSlugs || [])
@@ -99,17 +63,7 @@ export function ToolWorkspace({ tool, children }: ToolWorkspaceProps) {
         </div>
 
         <div className="flex items-center gap-2 shrink-0">
-          <button
-            onClick={handleToggleFavorite}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
-              favorite
-                ? 'bg-clay-500/15 border-clay-500 text-clay-600'
-                : 'bg-white border-line text-stone-600 hover:border-moss-300 hover:text-moss-700'
-            }`}
-          >
-            <Bookmark className={`w-3.5 h-3.5 ${favorite ? 'fill-current' : ''}`} />
-            <span>{favorite ? 'Favorited' : 'Favorite'}</span>
-          </button>
+          <FavoriteButton slug={tool.slug} />
         </div>
       </div>
 

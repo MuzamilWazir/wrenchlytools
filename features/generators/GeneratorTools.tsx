@@ -822,61 +822,9 @@ export function SignatureGeneratorTool() {
  );
 }
 
-// 12. Cover Letter Generator
-export function CoverLetterGeneratorTool() {
- const [role, setRole] = useState('Frontend Engineer');
- const [company, setCompany] = useState('Vercel');
- const [applicant, setApplicant] = useState('Jordan Lee');
+// 12. Cover Letter Generator (implementation lives in ./CoverLetterGenerator)
+export { CoverLetterGeneratorTool } from './CoverLetterGenerator';
 
- const letter = `Dear Hiring Team at ${company},\n\nI am writing to express my strong enthusiasm for the ${role} position at ${company}. With my background in TypeScript, React, and modern UI engineering, I am confident in my ability to deliver immediate value to your product team.\n\nThroughout my career, I have prioritized writing fast, accessible, and maintainable software. I look forward to discussing how my experience aligns with ${company}'s goals.\n\nWarm regards,\n${applicant}`;
-
- return (
- <div className="space-y-6">
- <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
- <div>
- <label className="block text-xs font-semibold text-stone-500 mb-1">Your Name</label>
- <input
- type="text"
- value={applicant}
- onChange={(e) => setApplicant(e.target.value)}
- className="w-full px-3 py-1.5 text-xs rounded-lg border border-stone-200 bg-white"
- />
- </div>
- <div>
- <label className="block text-xs font-semibold text-stone-500 mb-1">Target Job Role</label>
- <input
- type="text"
- value={role}
- onChange={(e) => setRole(e.target.value)}
- className="w-full px-3 py-1.5 text-xs rounded-lg border border-stone-200 bg-white"
- />
- </div>
- <div>
- <label className="block text-xs font-semibold text-stone-500 mb-1">Target Company</label>
- <input
- type="text"
- value={company}
- onChange={(e) => setCompany(e.target.value)}
- className="w-full px-3 py-1.5 text-xs rounded-lg border border-stone-200 bg-white"
- />
- </div>
- </div>
-
- <div>
- <div className="flex justify-between items-center mb-1">
- <label className="text-xs font-semibold text-stone-500">Generated Cover Letter Draft</label>
- <GenCopyButton text={letter} />
- </div>
- <textarea
- readOnly
- value={letter}
- rows={10}
- className="w-full p-4 text-xs leading-relaxed rounded-xl border border-stone-200 bg-stone-50"
- />
- </div>
- </div>
- );
-}
 
 // 13. Thumbnail Maker
 export function ThumbnailMakerTool() {
