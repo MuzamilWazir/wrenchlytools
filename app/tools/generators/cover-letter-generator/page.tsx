@@ -90,6 +90,7 @@ const jsonLd = {
 export const metadata: Metadata = {
   title: { absolute: COVER_LETTER_TITLE },
   description: COVER_LETTER_DESCRIPTION,
+  keywords: [],
   alternates: {
     canonical: COVER_LETTER_ROUTE,
   },
