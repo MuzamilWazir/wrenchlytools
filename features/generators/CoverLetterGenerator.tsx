@@ -448,7 +448,6 @@ export function CoverLetterGeneratorTool() {
     setFields((prev) => ({ ...prev, [key]: value }));
 
   const purpose = P[fields.purpose] || P.job;
-  const tone = T[fields.tone] || T.professional;
 
   const build = (f: Fields, variant: number) => {
     const p = P[f.purpose] || P.job;
