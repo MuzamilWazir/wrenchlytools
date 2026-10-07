@@ -1443,19 +1443,24 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     slug: 'cover-letter-generator',
     name: 'Cover Letter Generator',
     category: 'generators',
-    shortDescription: 'Generate customized professional job application cover letters in seconds.',
-    longDescription: 'Draft compelling cover letters tailored to your target company, role, skills, and chosen tone of voice.',
+    shortDescription: 'Free cover letter generator for jobs, internships, scholarships, admissions, visas and proposals.',
+    longDescription: 'Create a cover letter for a job, internship, scholarship, university, visa or proposal in seconds. Pick a purpose and tone, edit the result, then copy, download or print it. Free, no signup, 100% private.',
     icon: 'MailOpen',
-    tags: ['cover letter', 'job application', 'career', 'letter', 'hiring'],
+    tags: ['cover letter', 'job application', 'scholarship', 'internship', 'visa letter', 'career', 'letter', 'hiring'],
     route: '/tools/generators/cover-letter-generator',
     processingType: 'client',
     howToUse: [
-      'Enter your name, job title, and employer details.',
-      'Select a tone (Professional, Confident, Enthusiastic).',
-      'Copy the generated cover letter and edit as needed.'
+      'Choose what the letter is for (job, scholarship, admission, visa, etc.).',
+      'Enter your name, the role or program, the organization, your skills and achievements.',
+      'Pick a tone, click Generate, edit the letter, then copy, download or print it.'
     ],
     faqs: [
-      { question: 'Can I edit the generated letter?', answer: 'Yes, the output is directly editable in the workspace before copying.' }
+      { question: 'Can I use this for things other than jobs?', answer: 'Yes. It supports jobs, internships, scholarships, university admissions, visa applications, volunteer roles and business proposals.' },
+      { question: 'Can I edit the generated letter?', answer: 'Yes. The letter appears in an editable box. Change anything before you copy, download or print it.' },
+      { question: 'Is my data stored anywhere?', answer: 'No. The generator runs entirely in your browser. Nothing you type is uploaded or saved on our servers.' },
+      { question: 'How long should a cover letter be?', answer: 'Aim for 200 to 400 words, which is about one page.' },
+      { question: 'Is the generator free?', answer: 'Yes. It is free, with no signup or watermark.' },
+      { question: 'Does it use AI?', answer: 'It uses smart templates and keyword matching, so it works instantly and privately.' }
     ],
     relatedToolSlugs: ['resume-builder', 'email-writer'],
   },

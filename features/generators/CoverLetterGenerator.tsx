@@ -409,7 +409,7 @@ export function CoverLetterGeneratorTool() {
         const next: Fields = { ...DEFAULT_FIELDS };
         FIELD_KEYS.forEach((key) => {
           if (saved[key] != null) {
-            (next as Record<string, string>)[key] = saved[key] as string;
+            Object.assign(next, { [key]: saved[key] as string });
           }
         });
         if (!P[next.purpose]) next.purpose = 'job';
@@ -523,9 +523,7 @@ export function CoverLetterGeneratorTool() {
     const next: Fields = { ...fields, name: 'Aisha Khan', manager: '' };
     FIELD_KEYS.forEach((key) => {
       if (key in example) {
-        (next as Record<string, string>)[key] = String(
-          (example as Record<string, string>)[key]
-        );
+        Object.assign(next, { [key]: String(example[key]) });
       }
     });
     variantRef.current = 0;

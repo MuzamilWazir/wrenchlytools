@@ -16,6 +16,16 @@ const staticRoutes = [
   "/cookies",
 ];
 
+/**
+ * Content freshness signal for crawlers. Bump when large parts of the
+ * site (or a specific tool page) change in a way that matters for SEO.
+ */
+const SITE_LAST_MODIFIED = new Date("2026-10-07");
+
+const TOOL_LAST_MODIFIED: Record<string, Date> = {
+  "/tools/generators/cover-letter-generator": new Date("2026-10-07"),
+};
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     ...staticRoutes,
@@ -26,5 +36,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return routes.map((route) => ({
     url: new URL(route, SITE_URL).toString(),
+    lastModified: TOOL_LAST_MODIFIED[route] ?? SITE_LAST_MODIFIED,
   }));
 }
