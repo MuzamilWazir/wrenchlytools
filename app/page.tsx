@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HomePage } from "@/components/pages/HomePage";
+import { TOOLS_REGISTRY } from "@/data/toolsRegistry";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -21,8 +22,8 @@ export default function Page() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: "WrenchlyTools",
-            description:
-              "The all-in-one digital utility toolbox with over 80 free browser-based tools.",
+            url: SITE_URL,
+            description: `The all-in-one digital utility toolbox with ${TOOLS_REGISTRY.length} free browser-based tools.`,
             potentialAction: {
               "@type": "SearchAction",
               target: `${SITE_URL}/tools?q={search_term_string}`,

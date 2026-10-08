@@ -4,10 +4,19 @@ export interface BlogPost {
   excerpt: string;
   content: string;
   category: string;
+  /** Human-readable display date, e.g. "September 25, 2026". */
   date: string;
+  /** ISO 8601 publish date (yyyy-mm-dd) used for metadata and JSON-LD. */
+  datePublished: string;
+  /** ISO 8601 last-modified date (yyyy-mm-dd). */
+  dateModified?: string;
+  author?: string;
   readTime: string;
+  /** Site-local image path, e.g. "/blog/my-post.png". */
   image?: string;
   imageAlt?: string;
+  /** Slug of a related tool rendered as a CTA below the article. */
+  relatedToolSlug?: string;
 }
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -18,10 +27,14 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       'Anthropic and OpenAI shipped major model updates within hours of each other. Here is what the rapid release cadence means for developers, businesses and everyday users.',
     category: 'AI News',
-    date: 'September 2026',
+    date: 'September 25, 2026',
+    datePublished: '2026-09-25',
+    dateModified: '2026-09-25',
+    author: 'WrenchlyTools Editorial Team',
     readTime: '8 min read',
-    image: 'https://picsum.photos/seed/ai-model-release/1200/630',
+    image: '/blog/opus-5-5-and-gpt-6-model-drop-week.png',
     imageAlt: 'Abstract neural network visualization representing new AI model releases',
+    relatedToolSlug: 'summarizer',
     content: `Late September 2026 turned into one of the busiest weeks the AI industry has ever seen. Anthropic released Claude Opus 5.5, and roughly ninety minutes later OpenAI followed with updates to its GPT-6 family. TechCrunch summed up the moment as a "model drop week" for both labs, and the phrase stuck because it captures how normal this kind of back-to-back launch has become.
 
 ### A Very Short Gap Between Two Big Launches
@@ -52,9 +65,9 @@ Every launch comes with charts showing improvements on public benchmarks. Those 
 It also helps to remember that benchmark results can be sensitive to prompt wording, test contamination and how many attempts a model is given. Treat headline numbers as a starting point for your own testing, not a final verdict.
 
 ### What This Means for Everyday Users
-For most people, the practical effect is simple: the assistants built into search, email, documents and phone apps will keep getting more capable, and often faster and cheaper. As the top models get closer in quality, the deciding factors shift toward things like privacy policies, price, integrations with the tools you already use and how well the product fits your daily habits.
+For most people, the practical effect is simple: the assistants built into search, email, documents and phone apps will keep getting more capable, and often faster and cheaper. If you want to keep up without reading every announcement in full, our [AI summarizer](/tools/ai/summarizer) can pull the highlights out of a long release post in seconds. As the top models get closer in quality, the deciding factors shift toward things like privacy policies, price, integrations with the tools you already use and how well the product fits your daily habits.
 
-That is good news for consumers, because competition tends to lower prices and improve features. It also means it is worth checking what an AI product does with your data before you paste in anything sensitive.
+That is good news for consumers, because competition tends to lower prices and improve features. It also means it is worth checking what an AI product does with your data before you paste in anything sensitive. Our companion piece on [why browser-side tools protect privacy](/blog/how-browser-side-tools-protect-privacy) explains how to tell whether your input ever leaves your device.
 
 ### The Bigger Picture
 Rapid releases raise questions that the industry is still working out. How much testing is enough before a model ships? How should safety evaluations keep pace with shorter development cycles? How can smaller companies and regulators keep up when the landscape changes every few weeks?
@@ -74,10 +87,14 @@ There are no settled answers yet, but the direction is clear. AI progress is now
     excerpt:
       'From consumer assistants acting on your accounts to hardware-level kill switches for rogue agents, this week showed why agent permissions are the next big security challenge.',
     category: 'Cybersecurity',
-    date: 'September 2026',
+    date: 'September 23, 2026',
+    datePublished: '2026-09-23',
+    dateModified: '2026-09-23',
+    author: 'WrenchlyTools Editorial Team',
     readTime: '9 min read',
-    image: 'https://picsum.photos/seed/ai-agent-security/1200/630',
+    image: '/blog/ai-agents-need-guardrails-security-week.png',
     imageAlt: 'Digital padlock over a circuit board symbolizing AI security',
+    relatedToolSlug: 'password-generator',
     content: `For the last few years, most people met AI through a chat window. You typed a question, you got an answer, and that was the end of it. In 2026, that picture has changed. AI agents can now browse websites, send messages, manage listings, fill in forms and take actions on your behalf. This week's tech news made one thing very clear: giving software the power to act also gives it the power to make expensive mistakes.
 
 ### From Answers to Actions
@@ -110,6 +127,8 @@ You do not need to avoid AI agents, but you should treat them like a new employe
 - Grant the minimum access needed. If an agent only needs to read your calendar, do not give it permission to send email.
 - Require approval for anything irreversible, including payments, deletions and messages sent in your name.
 - Use a separate account for experiments so that a mistake cannot touch your main data.
+- Give every account its own strong, random password, which you can create with a [password generator](/tools/generators/password-generator). If one experiment leaks a credential, it opens nothing else.
+- Prefer tools that never upload your files; our [browser-side tools](/blog/how-browser-side-tools-protect-privacy) guide shows how to verify that claim in a few clicks.
 - Review activity logs regularly and revoke access to tools you no longer use.
 - Be careful with content the agent reads. A suspicious web page or email can contain hidden instructions.
 - Keep your devices and apps updated so known vulnerabilities are patched quickly.
@@ -141,11 +160,14 @@ It also signals that the industry is moving from asking whether agents will need
     excerpt:
       'Big Tech capital spending is on track to hit record levels in 2026, and the latest deals show the race is shifting from software to physical infrastructure.',
     category: 'Business & Tech',
-    date: 'September 2026',
+    date: 'September 18, 2026',
+    datePublished: '2026-09-18',
+    dateModified: '2026-09-18',
+    author: 'WrenchlyTools Editorial Team',
     readTime: '8 min read',
-    image: 'https://picsum.photos/seed/data-center-chips/1200/630',
+    image: '/blog/ai-spending-boom-chips-data-centers-2026.png',
     imageAlt: 'Rows of servers inside a modern data center',
-    content: `The AI race used to be about clever algorithms and bigger datasets. Today it is just as much about concrete, copper, electricity and silicon. Tech coverage this week pointed to some remarkable numbers that show how quickly the industry is turning into a heavy infrastructure business.
+    content: `The AI race used to be about clever algorithms and bigger datasets. Today it is just as much about concrete, copper, electricity and silicon. Tech coverage this week pointed to some remarkable numbers that show how quickly the industry is turning into a heavy infrastructure business, on the heels of a busy release week we covered in our [model drop week](/blog/opus-5-5-and-gpt-6-model-drop-week) report.
 
 ### The Scale of the Spending
 Analysts estimate that the combined capital spending of Microsoft, Google, Amazon, Meta and Oracle could reach around 780 billion dollars in 2026. That is close to five times the level of just three years ago. Much of that money goes into data centers, specialized chips, networking equipment and the power supply needed to run them.
@@ -154,7 +176,7 @@ Other headlines from the past few weeks fit the same pattern.
 
 - AMD agreed to acquire a lab focused on teaching machines physics, in a deal reported at 8.2 billion dollars.
 - Nvidia announced a record share buyback, which some commentators read as a sign of confidence in its own future demand.
-- Nvidia was also reported to be exploring insurance arrangements connected to the chips that power AI agents.
+- Nvidia was also reported to be exploring insurance arrangements connected to the chips that power AI agents, a topic we examined alongside the week's [agent guardrails](/blog/ai-agents-need-guardrails-security-week) reporting.
 - Nvidia has been mapping very large "AI factory" projects abroad, including plans measured in gigawatts of capacity.
 
 Some figures come from analyst estimates and press reports, so they may be revised, but the direction is not in doubt.
@@ -203,10 +225,14 @@ Expect more pressure on the industry to use renewable power, improve efficiency 
     excerpt:
       'Meta is extending its Muse AI beyond consumer features with a small-business version, part of a broader push toward AI agents that talk to customers for you.',
     category: 'Business & Tech',
-    date: 'September 2026',
+    date: 'September 11, 2026',
+    datePublished: '2026-09-11',
+    dateModified: '2026-09-11',
+    author: 'WrenchlyTools Editorial Team',
     readTime: '7 min read',
-    image: 'https://picsum.photos/seed/small-business-ai/1200/630',
+    image: '/blog/meta-muse-small-business-ai-agents.png',
     imageAlt: 'Small business owner using a smartphone and laptop',
+    relatedToolSlug: 'invoice-generator',
     content: `Meta launched Muse for Small Business this week, extending its AI beyond consumer chat features and into tools designed to help merchants run their day-to-day operations. For millions of people who sell through Facebook, Instagram and WhatsApp, this could change how they handle customers, listings and follow-ups.
 
 ### What Is Happening
@@ -227,7 +253,7 @@ Potential benefits include the following.
 - More consistent communication, which can improve customer trust.
 
 ### The Risks You Should Not Ignore
-Handing customer conversations to an AI also comes with real risks, and a recent example shows why. A tech creator reported letting Meta's Muse agent manage a marketplace listing for a keyboard, and the episode was used as an example of the permission problems appearing across the industry.
+Handing customer conversations to an AI also comes with real risks, and a recent example shows why. A tech creator reported letting Meta's Muse agent manage a marketplace listing for a keyboard, and the episode was used as an example of the permission problems appearing across the industry. We covered those [agent permission problems in depth](/blog/ai-agents-need-guardrails-security-week) in a companion piece.
 
 Sellers should think carefully about these issues.
 
@@ -241,6 +267,7 @@ Sellers should think carefully about these issues.
 If you want to try AI tools for your shop, a gradual approach works best.
 
 - Begin with low-risk tasks such as drafting replies that you approve before sending.
+- Keep billing steady by generating clean, consistent paperwork with an [invoice generator](/tools/generators/invoice-generator) instead of writing each one by hand.
 - Write down your key policies, prices and frequently asked questions so the assistant works from correct information.
 - Check conversations regularly and correct mistakes early.
 - Keep a clear way for customers to reach a real person when needed.
@@ -266,11 +293,15 @@ For customers, shopping through messaging may become smoother, with quick answer
     excerpt:
       'Uploading confidential financial reports or family photos to cloud conversion servers is a major security risk. Here is how modern WebAssembly and Canvas APIs process files 100% locally.',
     category: 'Privacy & Security',
-    date: 'March 2026',
+    date: 'March 19, 2026',
+    datePublished: '2026-03-19',
+    dateModified: '2026-03-19',
+    author: 'Hamza Farooq',
     readTime: '7 min read',
-    image: 'https://picsum.photos/seed/client-side-privacy/1200/630',
+    image: '/blog/how-browser-side-tools-protect-privacy.png',
     imageAlt: 'Laptop with a security shield icon',
-    content: `For over a decade, simple tasks like merging two PDF documents or compressing a JPEG image required sending the entire file across the internet to a third-party server. Once your document left your device, you had no guarantees about retention policies, unauthorized indexing or data leaks. Today, that trade-off is no longer necessary.
+    relatedToolSlug: 'image-compressor',
+    content: `For over a decade, simple tasks like [merging two PDF documents](/tools/pdf/pdf-merger) or compressing a JPEG image required sending the entire file across the internet to a third-party server. Once your document left your device, you had no guarantees about retention policies, unauthorized indexing or data leaks. Today, that trade-off is no longer necessary.
 
 ### The Hidden Cost of "Free" Online Converters
 Many free online tools make money from advertising, data collection or upselling premium plans. Even well-meaning services store uploaded files for some period, and any stored file can be exposed through a breach, a misconfigured server or a rogue employee.
@@ -298,7 +329,7 @@ When you select a file in a client-side tool, the browser reads it into memory o
 ### How to Check That a Tool Is Really Client-Side
 Not every tool that claims to be private actually is. You can verify it yourself.
 
-- Open your browser's developer tools and watch the Network tab while you process a file. If a large upload request appears, the file is being sent away.
+- Open your browser's developer tools and watch the Network tab while you process a file. If a large upload request appears, the file is being sent away. You can try this immediately with our [image compressor](/tools/images/image-compressor): the file should shrink while the Network tab stays quiet.
 - Try switching off your internet connection after the page loads. A true client-side tool should still work.
 - Read the privacy policy for clear statements about file handling and retention.
 
@@ -316,39 +347,52 @@ At WrenchlyTools, client-side execution is our foundational standard. Wherever t
   },
   {
     slug: 'complete-guide-to-pakistan-income-tax-2025',
-    title: 'Complete Guide to Pakistan Income Tax on Salaried Individuals (Tax Year 2024–2026)',
+    title: 'Complete Guide to Pakistan Income Tax on Salaried Individuals (Tax Year 2026-27)',
     excerpt:
-      'A comprehensive breakdown of FBR tax slabs, progressive percentages, monthly tax deduction formulas, and net take-home salary calculations.',
+      'A comprehensive breakdown of FBR tax slabs for Tax Year 2026-27, progressive percentages, monthly tax deduction formulas, and net take-home salary calculations.',
     category: 'Finance & Tax',
-    date: 'February 2026',
+    date: 'February 24, 2026',
+    datePublished: '2026-02-24',
+    dateModified: '2026-10-07',
+    author: 'Sana Malik',
     readTime: '8 min read',
-    image: 'https://picsum.photos/seed/pakistan-income-tax/1200/630',
+    image: '/blog/complete-guide-to-pakistan-income-tax-2025.png',
     imageAlt: 'Calculator and documents used for tax planning',
+    relatedToolSlug: 'pakistan-income-tax',
     content: `Understanding how your employer calculates monthly income tax deductions under the Federal Board of Revenue (FBR) rules is essential for financial planning in Pakistan. Many salaried people only look at the final amount that reaches their bank account, but knowing how the number is produced helps you check your payslip, plan your budget and negotiate your salary with confidence.
 
 ### Who Counts as a Salaried Individual
 Under the Finance Act, a taxpayer is treated as salaried when more than 75 percent of their total income comes from salary. Salaried individuals benefit from a separate, generally lower set of progressive slabs compared with non-salaried taxpayers such as business owners and freelancers.
 
 ### Salaried Slabs Overview
-The tax system is progressive, which means higher portions of your income are taxed at higher rates.
+The tax system is progressive, which means higher portions of your income are taxed at higher rates. The slabs below are the ones that apply from 1 July 2026 under the Finance Act 2026, for Tax Year 2026-27.
 
 - Up to PKR 600,000 per year (PKR 50,000 per month): 0% tax.
-- PKR 600,001 to 1,200,000: 5% of the amount exceeding PKR 600,000.
-- PKR 1,200,001 to 2,200,000: PKR 30,000 plus 15% of the amount exceeding PKR 1,200,000.
-- PKR 2,200,001 to 3,200,000: PKR 180,000 plus 25% of the amount exceeding PKR 2,200,000.
-- PKR 3,200,001 to 4,100,000: PKR 430,000 plus 30% of the amount exceeding PKR 3,200,000.
-- Above PKR 4,100,000: PKR 700,000 plus 35% of the amount exceeding PKR 4,100,000.
+- PKR 600,001 to 1,200,000: 1% of the amount exceeding PKR 600,000.
+- PKR 1,200,001 to 2,200,000: PKR 6,000 plus 11% of the amount exceeding PKR 1,200,000.
+- PKR 2,200,001 to 3,200,000: PKR 116,000 plus 20% of the amount exceeding PKR 2,200,000.
+- PKR 3,200,001 to 4,100,000: PKR 316,000 plus 25% of the amount exceeding PKR 3,200,000.
+- PKR 4,100,001 to 5,600,000: PKR 541,000 plus 29% of the amount exceeding PKR 4,100,000.
+- PKR 5,600,001 to 7,000,000: PKR 976,000 plus 32% of the amount exceeding PKR 5,600,000.
+- Above PKR 7,000,000: PKR 1,424,000 plus 35% of the amount exceeding PKR 7,000,000.
 
 ### A Worked Example
-Suppose your monthly salary is PKR 200,000. Your annual income is PKR 2,400,000, which falls in the PKR 2,200,001 to 3,200,000 slab.
+Suppose your monthly salary is PKR 250,000. Your annual income is PKR 3,000,000, which falls in the PKR 2,200,001 to 3,200,000 slab.
 
-1. Start with the fixed amount for that slab: PKR 180,000.
-2. Find the amount above the slab's lower limit: 2,400,000 minus 2,200,000 equals PKR 200,000.
-3. Apply 25 percent to that excess: 200,000 multiplied by 0.25 equals PKR 50,000.
-4. Add the two together: 180,000 plus 50,000 equals PKR 230,000 in annual tax.
-5. Divide by twelve for the monthly deduction: about PKR 19,167.
+1. Start with the fixed amount for that slab: PKR 116,000.
+2. Find the amount above the slab's lower limit: 3,000,000 minus 2,200,000 equals PKR 800,000.
+3. Apply 20 percent to that excess: 800,000 multiplied by 0.20 equals PKR 160,000.
+4. Add the two together: 116,000 plus 160,000 equals PKR 276,000 in annual tax.
+5. Divide by twelve for the monthly deduction: PKR 23,000.
 
-That leaves a monthly take-home of roughly PKR 180,833 before any other deductions such as provident fund or insurance.
+That leaves a monthly take-home of roughly PKR 227,000 before any other deductions such as provident fund or insurance.
+
+### Other Common Salaries
+The same method gives these annual and monthly figures under the Tax Year 2026-27 slabs.
+
+- PKR 100,000 per month (PKR 1,200,000 per year): 1% of the 600,000 above the first band equals PKR 6,000 per year, or PKR 500 per month.
+- PKR 250,000 per month (PKR 3,000,000 per year): PKR 116,000 plus 20% of 800,000 equals PKR 276,000 per year, or PKR 23,000 per month.
+- PKR 400,000 per month (PKR 4,800,000 per year): PKR 541,000 plus 29% of 700,000 equals PKR 744,000 per year, or PKR 62,000 per month.
 
 ### How Employers Deduct Tax Monthly
 Employers estimate your total taxable salary for the year and deduct tax in equal monthly instalments. If your salary changes during the year because of a raise, bonus or allowance, the monthly deduction is adjusted so the annual total stays accurate.
@@ -378,7 +422,7 @@ Some items may be exempt or partly exempt, so check your payslip and employment 
 ### Verify Before You Rely on It
 Tax rules are updated regularly and may include surcharges or special provisions for certain income levels. Always confirm the current figures with the FBR or a qualified tax professional before making financial decisions.
 
-Use our Pakistan Income Tax Calculator to verify your monthly deductions automatically.
+Use our [Pakistan income tax calculator](/tools/calculators/pakistan-income-tax) to verify your monthly deductions automatically against the current slabs.
 
 ### Key Takeaways
 - Pakistan uses progressive slabs for salaried individuals, starting with a zero tax band.
@@ -392,10 +436,14 @@ Use our Pakistan Income Tax Calculator to verify your monthly deductions automat
     excerpt:
       'Learn the difference between lossy and lossless compression, when to convert JPG to WebP, and how to optimize images for fast web vitals.',
     category: 'Design & Web',
-    date: 'January 2026',
+    date: 'January 27, 2026',
+    datePublished: '2026-01-27',
+    dateModified: '2026-01-27',
+    author: 'Hamza Farooq',
     readTime: '7 min read',
-    image: 'https://picsum.photos/seed/image-compression/1200/630',
+    image: '/blog/how-to-compress-images-without-quality-loss.png',
     imageAlt: 'Photo editing workspace with image optimization tools',
+    relatedToolSlug: 'image-compressor',
     content: `Images make up over 60 percent of the average website's total byte payload. Large, unoptimized images cause sluggish load times, higher bounce rates and lower search rankings. The good news is that you can often shrink an image dramatically without anyone noticing a difference.
 
 ### Why Image Size Matters
@@ -411,7 +459,7 @@ There are two broad approaches.
 - Lossy compression removes some information that people are unlikely to notice. It achieves much larger savings, which is why it is the main tool for web photos.
 
 ### Choosing the Right Format
-1. WebP is an excellent choice for photographs and general web images. It usually produces much smaller files than JPEG at similar quality.
+1. WebP is an excellent choice for photographs and general web images. It usually produces much smaller files than JPEG at similar quality. If your pipeline is still on JPG, a quick pass through an [image converter](/tools/images/image-converter) moves it over in bulk.
 2. JPEG is still widely supported and works well for photos when WebP is not an option.
 3. PNG is best for graphics that need transparent backgrounds, sharp edges or flat colors, such as logos and screenshots.
 4. SVG is ideal for icons and simple illustrations because it scales to any size without losing quality.
@@ -428,7 +476,7 @@ There are two broad approaches.
 1. Start with the original, highest-quality image.
 2. Resize it to the largest size it will be shown on your site.
 3. Choose the best format for the type of image.
-4. Compress with a quality setting around 80 to 85 percent.
+4. Compress with a quality setting around 80 to 85 percent in an [image compressor](/tools/images/image-compressor).
 5. Compare the result against the original at normal viewing size.
 6. If the difference is invisible, keep the smaller file. If not, raise the quality slightly.
 
@@ -436,7 +484,7 @@ There are two broad approaches.
 Compression works best alongside other good practices. Use lazy loading so images below the fold load only when needed. Provide responsive image sizes so phones do not download desktop-sized files. Serve images through a content delivery network to reduce delay for visitors far from your server.
 
 ### Privacy Tip
-When you compress private photos or documents, prefer a tool that works entirely in your browser. That way your images are processed on your own device and never uploaded to a third-party server.
+When you compress private photos or documents, prefer a tool that works entirely in your browser. That way your images are processed on your own device and never uploaded to a third-party server — our post on [why browser-side tools protect privacy](/blog/how-browser-side-tools-protect-privacy) explains how to verify that claim yourself.
 
 ### Key Takeaways
 - Images are often the heaviest part of a web page, so optimizing them has a big payoff.

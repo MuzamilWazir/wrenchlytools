@@ -60,7 +60,7 @@ export function HomePage() {
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 text-xs font-semibold text-moss-200 bg-moss-800 border border-moss-700 px-3 py-1.5 rounded-full">
                 <Sparkles className="w-3.5 h-3.5 text-moss-300" />
-                <span>Over 80+ Browser-Based Utilities</span>
+                <span>{TOOLS_REGISTRY.length} Browser-Based Utilities</span>
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-balance">
@@ -225,7 +225,7 @@ export function HomePage() {
             href="/tools"
             className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-moss-600 hover:text-moss-700"
           >
-            <span>All {TOOLS_REGISTRY.length}+ Tools</span>
+            <span>All {TOOLS_REGISTRY.length} Tools</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

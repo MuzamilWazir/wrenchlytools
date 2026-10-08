@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Shield, HelpCircle, CheckCircle2, ChevronDown } from 'lucide-react';
 import { Breadcrumbs } from '@/components/navigation/Breadcrumbs';
 import { ToolDefinition } from '@/types/tools';
@@ -15,11 +15,11 @@ import { FavoriteButton } from '@/components/tools/FavoriteButton';
 interface ToolWorkspaceProps {
   tool: ToolDefinition;
   children: React.ReactNode;
+  /** Server-rendered editorial guide sections placed below the tool. */
+  guide?: React.ReactNode;
 }
 
-export function ToolWorkspace({ tool, children }: ToolWorkspaceProps) {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-
+export function ToolWorkspace({ tool, children, guide }: ToolWorkspaceProps) {
   useEffect(() => {
     recordToolVisit(tool.slug);
   }, [tool.slug]);
@@ -76,6 +76,9 @@ export function ToolWorkspace({ tool, children }: ToolWorkspaceProps) {
 
       <AdSlot position="bottom" />
 
+      {/* Server-rendered editorial guide */}
+      {guide}
+
       {/* How to use */}
       {tool.howToUse && tool.howToUse.length > 0 && (
         <section className="mb-8 rounded-2xl border border-line bg-stone-50 p-6">
@@ -104,28 +107,20 @@ export function ToolWorkspace({ tool, children }: ToolWorkspaceProps) {
             Frequently Asked Questions
           </h2>
           <div className="space-y-2">
-            {tool.faqs.map((faq, idx) => {
-              const isOpen = openFaqIndex === idx;
-              return (
-                <div
-                  key={idx}
-                  className="rounded-xl border border-line bg-white overflow-hidden"
-                >
-                  <button
-                    onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                    className="w-full text-left px-4 py-3 text-sm font-medium text-ink flex items-center justify-between hover:bg-stone-50 transition-colors"
-                  >
-                    <span>{faq.question}</span>
-                    <ChevronDown className={`w-4 h-4 text-stone-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-                  </button>
-                  {isOpen && (
-                    <div className="px-4 pb-3 pt-1 text-xs text-stone-600 leading-relaxed border-t border-line">
-                      {faq.answer}
-                    </div>
-                  )}
+            {tool.faqs.map((faq, idx) => (
+              <details
+                key={idx}
+                className="group rounded-xl border border-line bg-white overflow-hidden"
+              >
+                <summary className="w-full cursor-pointer list-none px-4 py-3 text-sm font-medium text-ink flex items-center justify-between hover:bg-stone-50 transition-colors [&::-webkit-details-marker]:hidden">
+                  <span>{faq.question}</span>
+                  <ChevronDown className="w-4 h-4 text-stone-500 transition-transform group-open:rotate-180" />
+                </summary>
+                <div className="px-4 pb-3 pt-1 text-xs text-stone-600 leading-relaxed border-t border-line">
+                  {faq.answer}
                 </div>
-              );
-            })}
+              </details>
+            ))}
           </div>
         </section>
       )}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
   Search,
   LayoutGrid,
@@ -25,6 +25,11 @@ export function AllToolsPage() {
   const [sortBy, setSortBy] = useState<SortKey>('popular');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get('q');
+    if (q) setSearch(q);
+  }, []);
 
   const categoryCounts = useMemo(() => {
     const counts = {} as Record<ToolCategory, number>;
@@ -122,7 +127,7 @@ export function AllToolsPage() {
                 setSearch(e.target.value);
                 setVisibleCount(PAGE_SIZE);
               }}
-              placeholder="Search 113 tools by name, keyword, or tag…"
+              placeholder={`Search ${TOOLS_REGISTRY.length} tools by name, keyword, or tag…`}
               aria-label="Search tools"
               className="w-full pl-10 pr-10 py-2.5 text-sm rounded-xl border border-line bg-white text-ink placeholder:text-stone-500 outline-none transition-colors focus:border-moss-400 focus:ring-2 focus:ring-moss-500/20 [&::-webkit-search-cancel-button]:hidden"
             />

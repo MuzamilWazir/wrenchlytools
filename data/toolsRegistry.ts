@@ -11,6 +11,7 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     icon: 'FileText',
     tags: ['words', 'characters', 'count', 'reading time', 'sentences', 'editor'],
     route: '/tools/text/word-counter',
+    seoTitle: 'Word Counter — Count Words, Characters & Reading Time',
     isPopular: true,
     processingType: 'client',
     howToUse: [
@@ -385,6 +386,7 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     icon: 'Shrink',
     tags: ['compress', 'optimize', 'shrink', 'jpg', 'png', 'webp'],
     route: '/tools/images/image-compressor',
+    seoTitle: 'Image Compressor — Reduce JPG & PNG File Size Online (Free)',
     isPopular: true,
     processingType: 'client',
     howToUse: [
@@ -725,6 +727,7 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     icon: 'Calendar',
     tags: ['age', 'birthday', 'chronological', 'years', 'months'],
     route: '/tools/calculators/age-calculator',
+    seoTitle: 'Age Calculator — Exact Age in Years, Months and Days',
     isPopular: true,
     processingType: 'client',
     howToUse: [
@@ -750,6 +753,7 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     icon: 'Percent',
     tags: ['percentage', 'math', 'increase', 'decrease', 'fraction'],
     route: '/tools/calculators/percentage-calculator',
+    seoTitle: 'Percentage Calculator — Calculate % Increase, Decrease & Change',
     isPopular: true,
     processingType: 'client',
     howToUse: [
@@ -1105,25 +1109,26 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     slug: 'pakistan-income-tax',
     name: 'Pakistan Income Tax Calculator',
     category: 'calculators',
-    shortDescription: 'Calculate Pakistan income tax on salary for Tax Year 2024-2025/2025-2026 with monthly breakdown.',
-    longDescription: 'Verified tax calculator for salaried individuals in Pakistan based on Federal Board of Revenue (FBR) progressive tax slabs with monthly and yearly take-home salary.',
+    shortDescription: 'Calculate Pakistan income tax on salary for Tax Year 2026-2027 with monthly breakdown.',
+    longDescription: 'Updated for Tax Year 2026-27 (Finance Act 2026): verified FBR progressive tax slabs for salaried individuals in Pakistan, with monthly tax, annual liability and net take-home salary.',
     icon: 'Calculator',
     tags: ['pakistan', 'income tax', 'fbr', 'salary', 'pkr', 'tax slabs'],
     route: '/tools/calculators/pakistan-income-tax',
     isPopular: true,
     processingType: 'client',
+    seoTitle: 'Pakistan Income Tax Calculator 2026-27 — FBR Salary Tax Slabs',
     howToUse: [
-      'Enter your monthly or annual gross salary in PKR.',
-      'Select your employment type (Salaried Individual).',
-      'Inspect monthly income tax, annual income tax, and net take-home salary.'
+      'Enter your gross monthly salary in PKR.',
+      'The calculator applies the Finance Act 2026 slabs to your annual income automatically.',
+      'Read your monthly tax, annual tax liability, effective rate and net take-home salary.'
     ],
     faqs: [
-      { question: 'What is the tax-free threshold in Pakistan?', answer: 'Annual salaried income up to PKR 600,000 (PKR 50,000/month) is taxed at 0%.' },
-      { question: 'Are these rates official?', answer: 'Calculations adhere strictly to the Pakistan Finance Act tax brackets for salaried taxpayers.' },
+      { question: 'What is the tax-free threshold in Pakistan?', answer: 'For Tax Year 2026-27, annual salaried income up to PKR 600,000 (PKR 50,000/month) is taxed at 0%.' },
+      { question: 'Are these rates official?', answer: 'Yes — the calculator uses the salaried income tax slabs notified under the Finance Act 2026, effective 1 July 2026 for Tax Year 2026-27.' },
       { question: 'How does an income tax calculator work in Pakistan?', answer: 'It computes annual and monthly tax liability based on the Federal Board of Revenue (FBR) progressive tax slabs for salaried individuals.' },
       { question: 'What is the current tax-free threshold for salaries?', answer: 'Annual taxable income up to PKR 600,000 is taxed at 0% (tax-free).' },
       { question: 'How is monthly tax calculated from annual tax?', answer: 'The tool computes the total yearly tax based on your slab and divides it by 12 to show the monthly withholding deduction.' },
-      { question: 'Are there any tax rebates or credits available?', answer: 'Yes, taxpayers can offset part of their tax liability through approved pension fund investments and Zakat contributions under tax laws.' }
+      { question: 'Are there any tax rebates or credits available?', answer: 'Taxpayers may reduce liability through approved deductions and credits such as qualifying pension contributions. Surcharge, exemptions and credits can change the final figure, so confirm with the FBR or a tax advisor.' }
     ],
     relatedToolSlugs: ['salary-after-tax', 'zakat-calculator', 'gold-value-calculator'],
   },
@@ -1218,6 +1223,7 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     icon: 'QrCode',
     tags: ['qr code', 'barcode', 'wifi qr', 'link qr', 'scan'],
     route: '/tools/generators/qr-code-generator',
+    seoTitle: 'QR Code Generator — Free Custom QR Codes with Logo',
     isPopular: true,
     processingType: 'client',
     howToUse: [
@@ -1243,6 +1249,7 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     icon: 'KeyRound',
     tags: ['password', 'security', 'generator', 'strong password', 'crypto'],
     route: '/tools/generators/password-generator',
+    seoTitle: 'Password Generator — Strong Random Passwords, 100% In-Browser',
     isPopular: true,
     processingType: 'client',
     howToUse: [
@@ -1408,6 +1415,7 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     icon: 'FileText',
     tags: ['resume', 'cv', 'curriculum vitae', 'job application', 'career'],
     route: '/tools/generators/resume-builder',
+    seoTitle: 'Resume Builder — Create & Download a Professional Resume (Free)',
     processingType: 'client',
     howToUse: [
       'Enter your personal summary, job history, and education.',
@@ -1535,6 +1543,7 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     icon: 'Braces',
     tags: ['json', 'formatter', 'validator', 'prettify', 'minify', 'developer'],
     route: '/tools/developer/json-formatter',
+    seoTitle: 'JSON Formatter & Validator — Beautify, Minify and Lint JSON',
     isPopular: true,
     processingType: 'client',
     howToUse: [
@@ -2081,6 +2090,7 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     icon: 'Files',
     tags: ['merge pdf', 'combine pdf', 'join', 'pdf-lib', 'documents'],
     route: '/tools/pdf/pdf-merger',
+    seoTitle: 'Merge PDF Files Online — Free PDF Combiner, No Signup',
     isPopular: true,
     processingType: 'client',
     howToUse: [

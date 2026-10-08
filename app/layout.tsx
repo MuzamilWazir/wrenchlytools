@@ -29,16 +29,6 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
-  keywords: [
-    "free online tools",
-    "browser based utilities",
-    "image compressor",
-    "pdf merger",
-    "json formatter",
-    "word counter",
-    "qr code generator",
-    "unit converter",
-  ],
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
@@ -48,8 +38,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: SITE_OG_IMAGE,
-        width: 1600,
-        height: 730,
+        width: 1200,
+        height: 630,
         alt: `${SITE_NAME} online utility toolbox`,
       },
     ],

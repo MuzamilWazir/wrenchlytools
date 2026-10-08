@@ -9,7 +9,6 @@ import {
   useState,
 } from 'react';
 import { SearchCommandDialog } from '@/components/navigation/SearchCommandDialog';
-import { LoadingScreen } from '@/components/layout/LoadingScreen';
 
 interface SearchContextValue {
   isSearchOpen: boolean;
@@ -31,7 +30,6 @@ export function useSearch() {
 
 export function SearchProvider({ children }: { children: React.ReactNode }) {
   const [isSearchOpen, setSearchOpen] = useState(false);
-  const [initialLoading, setInitialLoading] = useState(true);
 
   const openSearch = useCallback(() => setSearchOpen(true), []);
   const closeSearch = useCallback(() => setSearchOpen(false), []);
@@ -56,7 +54,6 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <SearchContext.Provider value={value}>
-      {initialLoading && <LoadingScreen onFinish={() => setInitialLoading(false)} />}
       {children}
       {isSearchOpen && <SearchCommandDialog onClose={closeSearch} />}
     </SearchContext.Provider>

@@ -1,15 +1,29 @@
+import Link from 'next/link';
 import { Fragment, type ReactNode } from 'react';
 
 function renderInline(text: string): ReactNode {
-  return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
-    part.startsWith('**') && part.endsWith('**') ? (
-      <strong key={i} className="font-semibold text-ink">
-        {part.slice(2, -2)}
-      </strong>
-    ) : (
-      <Fragment key={i}>{part}</Fragment>
-    )
-  );
+  return text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g).map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={i} className="font-semibold text-ink">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (link) {
+      return (
+        <Link
+          key={i}
+          href={link[2]}
+          className="font-medium text-moss-600 underline decoration-moss-300 underline-offset-2 hover:text-moss-700 hover:decoration-moss-500"
+        >
+          {link[1]}
+        </Link>
+      );
+    }
+    return <Fragment key={i}>{part}</Fragment>;
+  });
 }
 
 type Block =

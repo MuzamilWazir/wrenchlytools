@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { CategoryPageView } from "@/components/pages/CategoryPageView";
 import { CATEGORIES, CATEGORY_LIST } from "@/data/categories";
 import { getToolsByCategory } from "@/data/toolsRegistry";
-import { SITE_OG_IMAGE } from "@/lib/site";
+import { SITE_URL } from "@/lib/site";
 import { ToolCategory } from "@/types/tools";
 
 type Params = { category: string };
@@ -25,11 +25,16 @@ export async function generateMetadata({
   }
 
   const tools = getToolsByCategory(category);
+  const ogImage = {
+    url: `/og-${info.slug}.png`,
+    width: 1200,
+    height: 630,
+    alt: `${info.name} tools on WrenchlyTools`,
+  };
 
   return {
     title: `${info.name} — ${tools.length} Free Online Tools`,
     description: info.description,
-    keywords: [info.name, ...tools.flatMap((tool) => tool.tags)].slice(0, 40),
     alternates: {
       canonical: `/tools/${info.slug}`,
     },
@@ -37,20 +42,13 @@ export async function generateMetadata({
       title: `${info.name} — Free Online Tools | WrenchlyTools`,
       description: info.description,
       url: `/tools/${info.slug}`,
-      images: [
-        {
-          url: SITE_OG_IMAGE,
-          width: 1600,
-          height: 730,
-          alt: "WrenchlyTools online utility toolbox",
-        },
-      ],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: `${info.name} — Free Online Tools | WrenchlyTools`,
       description: info.description,
-      images: [SITE_OG_IMAGE],
+      images: [ogImage.url],
     },
   };
 }
@@ -70,7 +68,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     "@type": "CollectionPage",
     name: `${info.name} — WrenchlyTools`,
     description: info.description,
-    url: `/tools/${info.slug}`,
+    url: `${SITE_URL}/tools/${info.slug}`,
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: tools.length,
@@ -78,7 +76,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
         "@type": "ListItem",
         position: index + 1,
         name: tool.name,
-        url: tool.route,
+        url: `${SITE_URL}${tool.route}`,
       })),
     },
   };

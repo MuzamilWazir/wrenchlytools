@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ToolPageView } from "@/components/pages/ToolPageView";
+import { ToolGuideSections } from "@/components/tools/ToolGuideSections";
 import { CATEGORIES } from "@/data/categories";
 import { TOOLS_REGISTRY, getToolBySlug } from "@/data/toolsRegistry";
-import { SITE_OG_IMAGE } from "@/lib/site";
+import { getToolGuide } from "@/data/toolGuides";
+import { SITE_URL } from "@/lib/site";
 import { ToolCategory } from "@/types/tools";
 
 type Params = { category: string; tool: string };
@@ -28,33 +30,32 @@ export async function generateMetadata({
   }
 
   const description = tool.longDescription || tool.shortDescription;
+  const title = tool.seoTitle ?? `${tool.name} — Free Online Tool`;
+  const ogImage = {
+    url: `/og-${tool.category}.png`,
+    width: 1200,
+    height: 630,
+    alt: `${tool.name} — free online tool on WrenchlyTools`,
+  };
 
   return {
-    title: `${tool.name} — Free Online Tool`,
+    title,
     description,
-    keywords: tool.tags,
     alternates: {
       canonical: tool.route,
     },
     openGraph: {
       type: "website",
-      title: `${tool.name} — Free Online Tool | WrenchlyTools`,
+      title: `${title} | WrenchlyTools`,
       description,
       url: tool.route,
-      images: [
-        {
-          url: SITE_OG_IMAGE,
-          width: 1600,
-          height: 730,
-          alt: "WrenchlyTools online utility toolbox",
-        },
-      ],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${tool.name} — Free Online Tool | WrenchlyTools`,
+      title: `${title} | WrenchlyTools`,
       description,
-      images: [SITE_OG_IMAGE],
+      images: [ogImage.url],
     },
   };
 }
@@ -68,12 +69,19 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     notFound();
   }
 
+  const guide = getToolGuide(tool.slug);
+  const faqs = guide?.extraFaqs?.length
+    ? [...tool.faqs, ...guide.extraFaqs]
+    : tool.faqs;
+  const toolWithFaqs = faqs === tool.faqs ? tool : { ...tool, faqs };
+
   const categoryInfo = CATEGORIES[tool.category as ToolCategory];
+  const description = tool.longDescription || tool.shortDescription;
 
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: tool.faqs.map((faq) => ({
+    mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: { "@type": "Answer", text: faq.answer },
@@ -84,15 +92,25 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-      { "@type": "ListItem", position: 2, name: "Tools", item: "/tools" },
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Tools",
+        item: `${SITE_URL}/tools`,
+      },
       {
         "@type": "ListItem",
         position: 3,
         name: categoryInfo?.name ?? tool.category,
-        item: `/tools/${tool.category}`,
+        item: `${SITE_URL}/tools/${tool.category}`,
       },
-      { "@type": "ListItem", position: 4, name: tool.name, item: tool.route },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: tool.name,
+        item: `${SITE_URL}${tool.route}`,
+      },
     ],
   };
 
@@ -109,9 +127,22 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       }
     : null;
 
+  const softwareJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: tool.name,
+    description,
+    url: `${SITE_URL}${tool.route}`,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Any (runs in a web browser)",
+    browserRequirements: "Requires JavaScript",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    ...(guide && { dateModified: guide.lastReviewed }),
+  };
+
   return (
     <>
-      {tool.faqs.length > 0 && (
+      {faqs.length > 0 && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -127,7 +158,14 @@ export default async function Page({ params }: { params: Promise<Params> }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <ToolPageView tool={tool} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+      />
+      <ToolPageView
+        tool={toolWithFaqs}
+        guide={guide ? <ToolGuideSections guide={guide} /> : undefined}
+      />
     </>
   );
 }

@@ -38,6 +38,23 @@ export interface ToolDefinition {
   howToUse: string[];
   faqs: ToolFAQ[];
   relatedToolSlugs: string[];
+  /** Full <title> override (used for priority tools where the default template is too generic). */
+  seoTitle?: string;
+}
+
+export interface GuideTable {
+  caption?: string;
+  headers: string[];
+  rows: string[][];
+}
+
+export interface GuideSection {
+  heading: string;
+  /** Paragraphs support **bold** and [label](/internal-path) inline markup. */
+  paragraphs?: string[];
+  /** Bulleted list items, same inline markup as paragraphs. */
+  list?: string[];
+  table?: GuideTable;
 }
 
 export interface ToolHistoryItem {

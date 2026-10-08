@@ -663,7 +663,7 @@ export function LoanEmiCalculatorTool() {
  );
 }
 
-// 10. Pakistan Income Tax Calculator (Salaried Tax Year 2024-2025 / 2025-2026)
+// 10. Pakistan Income Tax Calculator (Salaried — Tax Year 2026-2027 / Finance Act 2026)
 export function PakistanIncomeTaxTool() {
  const [monthlySalary, setMonthlySalary] = useState(150000);
 
@@ -671,26 +671,32 @@ export function PakistanIncomeTaxTool() {
  const annual = monthlySalary * 12;
  let annualTax = 0;
 
- // FBR Salaried Slabs (Finance Act 2024-2025):
+ // FBR Salaried Slabs — Finance Act 2026 (Tax Year 2026-27, effective 1 July 2026):
  // 0 - 600,000: 0%
- // 600,001 - 1,200,000: 5% of amount exceeding 600,000
- // 1,200,001 - 2,200,000: 30,000 + 15% of exceeding 1,200,000
- // 2,200,001 - 3,200,000: 180,000 + 25% of exceeding 2,200,000
- // 3,200,001 - 4,100,000: 430,000 + 30% of exceeding 3,200,000
- // Above 4,100,000: 700,000 + 35% of exceeding 4,100,000
+ // 600,001 - 1,200,000: 1% of amount exceeding 600,000
+ // 1,200,001 - 2,200,000: 6,000 + 11% of amount exceeding 1,200,000
+ // 2,200,001 - 3,200,000: 116,000 + 20% of amount exceeding 2,200,000
+ // 3,200,001 - 4,100,000: 316,000 + 25% of amount exceeding 3,200,000
+ // 4,100,001 - 5,600,000: 541,000 + 29% of amount exceeding 4,100,000
+ // 5,600,001 - 7,000,000: 976,000 + 32% of amount exceeding 5,600,000
+ // Above 7,000,000: 1,424,000 + 35% of amount exceeding 7,000,000
 
  if (annual <= 600000) {
  annualTax = 0;
  } else if (annual <= 1200000) {
- annualTax = (annual - 600000) * 0.05;
+ annualTax = (annual - 600000) * 0.01;
  } else if (annual <= 2200000) {
- annualTax = 30000 + (annual - 1200000) * 0.15;
+ annualTax = 6000 + (annual - 1200000) * 0.11;
  } else if (annual <= 3200000) {
- annualTax = 180000 + (annual - 2200000) * 0.25;
+ annualTax = 116000 + (annual - 2200000) * 0.2;
  } else if (annual <= 4100000) {
- annualTax = 430000 + (annual - 3200000) * 0.30;
+ annualTax = 316000 + (annual - 3200000) * 0.25;
+ } else if (annual <= 5600000) {
+ annualTax = 541000 + (annual - 4100000) * 0.29;
+ } else if (annual <= 7000000) {
+ annualTax = 976000 + (annual - 5600000) * 0.32;
  } else {
- annualTax = 700000 + (annual - 4100000) * 0.35;
+ annualTax = 1424000 + (annual - 7000000) * 0.35;
  }
 
  const monthlyTax = annualTax / 12;
@@ -708,6 +714,12 @@ export function PakistanIncomeTaxTool() {
 
  return (
  <div className="space-y-6">
+ <div className="flex flex-wrap items-center gap-2">
+ <span className="inline-flex items-center rounded-full bg-moss-50 px-2.5 py-1 text-[11px] font-semibold text-moss-700 ring-1 ring-inset ring-moss-100">
+ Tax Year 2026-27 · Finance Act 2026
+ </span>
+ <span className="text-[11px] text-stone-400">Salaried individuals · FBR slabs</span>
+ </div>
  <div className="max-w-sm">
  <label className="block text-xs font-semibold text-stone-500 mb-1">
  Gross Monthly Salary (PKR)
@@ -744,9 +756,15 @@ export function PakistanIncomeTaxTool() {
  <div className="text-2xl font-extrabold text-stone-900 mt-1">
  PKR {taxDetails.annualTax.toLocaleString()}
  </div>
- <span className="text-[11px] text-stone-400">Total FBR tax for Tax Year</span>
+ <span className="text-[11px] text-stone-400">Total FBR tax for Tax Year 2026-27</span>
  </div>
  </div>
+
+ <p className="text-[11px] leading-relaxed text-stone-400">
+ Estimate only — excludes surcharge, exemptions and tax credits, which can change your
+ final liability. Slabs follow the Finance Act 2026 (effective 1 July 2026); confirm
+ figures with the FBR or a registered tax advisor before filing.
+ </p>
  </div>
  );
 }

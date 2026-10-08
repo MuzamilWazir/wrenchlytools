@@ -176,7 +176,7 @@ export function GrammarCheckerTool() {
 // 3. Summarizer
 export function SummarizerTool() {
  const [text, setText] = useState(
- 'WrenchlyTools is an all-in-one digital utility suite designed for creators, students, and professionals. The platform includes over 80 discrete tools ranging from image compression to complex tax calculations. Every tool processes data locally in the browser, ensuring user privacy and eliminating server latency. By prioritizing simplicity and fast execution, WrenchlyTools provides an essential digital workbench for everyday tasks.'
+ 'WrenchlyTools is an all-in-one digital utility suite designed for creators, students, and professionals. The platform includes over 110 discrete tools ranging from image compression to complex tax calculations. Every tool processes data locally in the browser, ensuring user privacy and eliminating server latency. By prioritizing simplicity and fast execution, WrenchlyTools provides an essential digital workbench for everyday tasks.'
  );
  const [format, setFormat] = useState<'bullets' | 'paragraph'>('bullets');
  const [summary, setSummary] = useState('');
@@ -184,11 +184,11 @@ export function SummarizerTool() {
  const generateSummary = () => {
  if (format === 'bullets') {
  setSummary(
- '• Comprehensive online toolbox with 80+ everyday utilities.\n• Zero latency and full privacy through in-browser client-side execution.\n• Covers text formatting, image optimization, financial calculators, and developer tools.'
+ '• Comprehensive online toolbox with 110+ everyday utilities.\n• Zero latency and full privacy through in-browser client-side execution.\n• Covers text formatting, image optimization, financial calculators, and developer tools.'
  );
  } else {
  setSummary(
- 'WrenchlyTools is a secure, browser-native utility suite featuring 80+ tools across text, image, and calculation tasks. It emphasizes local data processing for immediate privacy and high performance.'
+ 'WrenchlyTools is a secure, browser-native utility suite featuring 110+ tools across text, image, and calculation tasks. It emphasizes local data processing for immediate privacy and high performance.'
  );
  }
  };
@@ -413,7 +413,7 @@ export function CaptionHashtagTool() {
 
  const generateCaption = () => {
  setCaption(
- `Excited to announce the official launch of WrenchlyTools! 🚀\n\nNo sign-ups, no spam, and no server latency—just 80+ fast, private tools to help you get work done in seconds.\n\nCheck it out and let me know your favorite tool in the comments below! 👇\n\n#buildinpublic #webdev #productivity #developer #softwaretools #indiehackers`
+ `Excited to announce the official launch of WrenchlyTools! 🚀\n\nNo sign-ups, no spam, and no server latency—just 110+ fast, private tools to help you get work done in seconds.\n\nCheck it out and let me know your favorite tool in the comments below! 👇\n\n#buildinpublic #webdev #productivity #developer #softwaretools #indiehackers`
  );
  };
 
