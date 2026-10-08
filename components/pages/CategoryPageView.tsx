@@ -39,6 +39,14 @@ export function CategoryPageView({ categoryParam }: { categoryParam: string }) {
       {/* Category Hero Banner */}
       <CategoryHeroBanner category={category} />
 
+      {/* Category intro — crawlable hub copy */}
+      <p className="text-sm text-stone-600 max-w-3xl leading-relaxed -mt-4">
+        {tools.length} free {category.name.toLowerCase()} that run entirely in your
+        browser — no sign-up, no uploads and no watermarks. {category.description}{' '}
+        Each tool page includes step-by-step instructions, frequently asked questions
+        and links to related tools, and your files never leave your device.
+      </p>
+
       {/* Tool Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {tools.map((tool) => (

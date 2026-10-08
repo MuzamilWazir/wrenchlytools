@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { Wrench, Shield, Zap, Heart, CheckCircle2 } from 'lucide-react';
+import { Wrench, Shield, Zap, Heart, CheckCircle2, Users } from 'lucide-react';
+import { TOOLS_REGISTRY } from '@/data/toolsRegistry';
+import { SUPPORT_EMAIL } from '@/lib/site';
 
 export function AboutContent() {
   return (
@@ -74,6 +76,41 @@ export function AboutContent() {
         >
           Explore the Toolbox →
         </Link>
+      </div>
+
+      <div className="p-8 rounded-3xl bg-white border border-line space-y-4">
+        <h2 className="text-xl font-bold text-ink flex items-center gap-2">
+          <Users className="w-5 h-5 text-moss-600" />
+          Who builds this
+        </h2>
+        <p className="text-sm text-stone-600 leading-relaxed">
+          WrenchlyTools is maintained by a small, hands-on team of developers and
+          designers. We ship and review every one of the {TOOLS_REGISTRY.length}{' '}
+          tools ourselves — writing the code, checking the math, and updating
+          time-sensitive pages like the{' '}
+          <Link
+            href="/tools/calculators/pakistan-income-tax"
+            className="font-medium text-moss-600 hover:underline"
+          >
+            Pakistan income tax calculator
+          </Link>{' '}
+          after each federal budget. There is no outside investment and no data
+          brokerage: the site stays free because the tools run in your browser and
+          we never receive your files.
+        </p>
+        <p className="text-sm text-stone-600 leading-relaxed">
+          Found a bug, have a tool idea, or want to work with us? Write to{' '}
+          <a
+            href={`mailto:${SUPPORT_EMAIL}`}
+            className="font-semibold text-moss-600 hover:underline"
+          >
+            {SUPPORT_EMAIL}
+          </a>{' '}
+          — a real person reads every message.
+        </p>
+        <p className="text-xs text-stone-400">
+          Last site-wide review: October 2026.
+        </p>
       </div>
     </div>
   );

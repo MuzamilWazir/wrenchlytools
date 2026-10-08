@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react';
-import { Send, CheckCircle2, MessageSquare } from 'lucide-react';
+import { Send, Mail, MessageSquare } from 'lucide-react';
+import { SUPPORT_EMAIL } from '@/lib/site';
 
 export function ContactPage() {
   const [name, setName] = useState('');
@@ -16,6 +17,9 @@ export function ContactPage() {
       alert('Please fill out all required fields.');
       return;
     }
+    const subject = encodeURIComponent(`[${category}] from ${name}`);
+    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+    window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
@@ -32,17 +36,34 @@ export function ContactPage() {
         <p className="text-sm text-stone-600 max-w-lg mx-auto">
           Have a tool recommendation, bug report, or partnership inquiry? We&apos;d love to hear from you.
         </p>
+        <p className="text-xs text-stone-500">
+          Or email us directly at{' '}
+          <a
+            href={`mailto:${SUPPORT_EMAIL}`}
+            className="font-semibold text-moss-600 hover:underline"
+          >
+            {SUPPORT_EMAIL}
+          </a>
+        </p>
       </div>
 
       <div className="p-8 rounded-3xl bg-white border border-line shadow-sm">
         {submitted ? (
           <div className="py-12 text-center space-y-4">
-            <div className="w-12 h-12 mx-auto rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
-              <CheckCircle2 className="w-6 h-6" />
+            <div className="w-12 h-12 mx-auto rounded-full bg-moss-100 text-moss-600 flex items-center justify-center">
+              <Mail className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-ink">Message Received!</h3>
+            <h3 className="text-lg font-bold text-ink">Your email app is opening</h3>
             <p className="text-xs text-stone-600 max-w-sm mx-auto">
-              Thank you for reaching out, {name}. Our engineering and product team will review your message shortly.
+              We&apos;ve prepared your message in your email client — press send there and it
+              will reach us. If nothing opened, write to{' '}
+              <a
+                href={`mailto:${SUPPORT_EMAIL}`}
+                className="font-semibold text-moss-600 hover:underline"
+              >
+                {SUPPORT_EMAIL}
+              </a>{' '}
+              directly.
             </p>
             <button
               onClick={() => {
@@ -51,7 +72,7 @@ export function ContactPage() {
               }}
               className="px-4 py-2 bg-moss-500 text-white text-xs font-bold rounded-xl"
             >
-              Send Another Note
+              Write Another Note
             </button>
           </div>
         ) : (
@@ -125,8 +146,11 @@ export function ContactPage() {
               className="w-full py-3 bg-moss-500 hover:bg-moss-600 text-white text-xs font-bold rounded-xl transition-colors flex items-center justify-center gap-2"
             >
               <Send className="w-4 h-4" />
-              <span>Send Message</span>
+              <span>Open in Email App</span>
             </button>
+            <p className="text-[11px] text-stone-400 text-center">
+              This form opens your default email app — nothing is stored on our servers.
+            </p>
           </form>
         )}
       </div>

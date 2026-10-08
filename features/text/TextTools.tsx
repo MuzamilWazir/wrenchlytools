@@ -1171,6 +1171,7 @@ export function HtmlToTextTool() {
  );
 
  const plainText = useMemo(() => {
+ if (typeof DOMParser === 'undefined') return '';
  const doc = new DOMParser().parseFromString(htmlInput, 'text/html');
  return doc.body.textContent || '';
  }, [htmlInput]);

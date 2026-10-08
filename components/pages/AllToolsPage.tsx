@@ -28,7 +28,10 @@ export function AllToolsPage() {
 
   useEffect(() => {
     const q = new URLSearchParams(window.location.search).get('q');
-    if (q) setSearch(q);
+    if (!q) return;
+    // Deferred one frame so hydration completes with server HTML first.
+    const id = requestAnimationFrame(() => setSearch(q));
+    return () => cancelAnimationFrame(id);
   }, []);
 
   const categoryCounts = useMemo(() => {
@@ -100,8 +103,17 @@ export function AllToolsPage() {
           <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-ink mt-1.5">
             All Tools
           </h1>
-          <p className="text-sm text-stone-600 mt-1.5 max-w-xl leading-relaxed">
-            Every utility runs in your browser — no sign-up, no uploads, no watermarks.
+          <p className="text-sm text-stone-600 mt-2 max-w-3xl leading-relaxed">
+            Browse the complete directory of {TOOLS_REGISTRY.length} free online
+            tools — text editors, image compressors, PDF mergers, tax and finance
+            calculators, generators, unit converters and developer utilities, all in
+            one place. Every tool runs directly in your browser, so documents, photos
+            and sensitive data never leave your device: no sign-up, no uploads, no
+            watermarks and no usage limits. Search by name, keyword or tag to jump
+            straight to a tool, or filter by category to explore the collection.
+            Popular starting points include the word counter, image compressor, PDF
+            merger, JSON formatter and Pakistan income tax calculator — and every
+            page is free to use without an account.
           </p>
         </div>
 

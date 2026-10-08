@@ -5,7 +5,7 @@ import { ToolGuideSections } from "@/components/tools/ToolGuideSections";
 import { CATEGORIES } from "@/data/categories";
 import { TOOLS_REGISTRY, getToolBySlug } from "@/data/toolsRegistry";
 import { getToolGuide } from "@/data/toolGuides";
-import { SITE_URL } from "@/lib/site";
+import { SITE_OG_IMAGE, SITE_URL } from "@/lib/site";
 import { ToolCategory } from "@/types/tools";
 
 type Params = { category: string; tool: string };
@@ -31,12 +31,20 @@ export async function generateMetadata({
 
   const description = tool.longDescription || tool.shortDescription;
   const title = tool.seoTitle ?? `${tool.name} — Free Online Tool`;
-  const ogImage = {
-    url: `/og-${tool.category}.png`,
-    width: 1200,
-    height: 630,
-    alt: `${tool.name} — free online tool on WrenchlyTools`,
-  };
+  // Custom OG art only for popular tools — everything else shares the default.
+  const ogImage = tool.isPopular
+    ? {
+        url: `/og-${tool.category}.png`,
+        width: 1200,
+        height: 630,
+        alt: `${tool.name} — free online tool on WrenchlyTools`,
+      }
+    : {
+        url: SITE_OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "WrenchlyTools online utility toolbox",
+      };
 
   return {
     title,

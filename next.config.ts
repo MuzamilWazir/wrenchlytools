@@ -2,13 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "picsum.photos",
-        pathname: "/**",
-      },
-    ],
+    // All images are served locally from /public — no remote hosts allowed.
+    remotePatterns: [],
   },
 };
 
