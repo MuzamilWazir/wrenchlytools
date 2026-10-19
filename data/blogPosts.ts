@@ -32,6 +32,8 @@ export const BLOG_POSTS: BlogPost[] = [
     dateModified: '2026-10-19',
     author: 'WrenchlyTools Editorial Team',
     readTime: '7 min read',
+    image: '/blog/how-to-write-a-follow-up-email.png',
+    imageAlt: 'How to write a follow-up email that gets a reply',
     relatedToolSlug: 'email-writer',
     content: `Most people never send the second email. They wait for a reply that does not come, assume the other person is busy, and move on. In reality, a single well-written follow-up often gets a response the first message never did. The trick is making it easy to answer.
 
@@ -93,6 +95,8 @@ If you would rather start from a finished draft than a blank page, our [professi
     dateModified: '2026-10-19',
     author: 'WrenchlyTools Editorial Team',
     readTime: '6 min read',
+    image: '/blog/ps5-games-running-on-xbox-series-x.png',
+    imageAlt: 'Xbox Series X console next to a PS5 controller',
     relatedToolSlug: 'image-compressor',
     content: `For years, console exclusives were a hard wall. PlayStation games stayed on PlayStation and Xbox games stayed on Xbox. In September 2026, a developer cracked that wall open a little, and gaming news sites noticed. To be clear from the start: this is not an official feature from Microsoft or Sony. It is an experimental, community-built emulator, and it behaves like one.
 
