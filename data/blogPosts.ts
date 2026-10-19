@@ -20,7 +20,67 @@ export interface BlogPost {
 }
 
 export const BLOG_POSTS: BlogPost[] = [
-  // ---------- Latest tech news (September 2026) ----------
+  // ---------- Latest tech news (October 2026) ----------
+  {
+    slug: 'ps5-games-running-on-xbox-series-x',
+    title: 'PS5 Games Running on Xbox Series X? The PS5X Emulator Explained',
+    excerpt:
+      'Can an Xbox Series X play PS5 games? A new experimental emulator called PS5X says yes, sort of. Here is what works, what does not, and what it means for gamers.',
+    category: 'Gaming & Tech',
+    date: 'October 19, 2026',
+    datePublished: '2026-10-19',
+    dateModified: '2026-10-19',
+    author: 'WrenchlyTools Editorial Team',
+    readTime: '6 min read',
+    relatedToolSlug: 'image-compressor',
+    content: `For years, console exclusives were a hard wall. PlayStation games stayed on PlayStation and Xbox games stayed on Xbox. In September 2026, a developer cracked that wall open a little, and gaming news sites noticed. To be clear from the start: this is not an official feature from Microsoft or Sony. It is an experimental, community-built emulator, and it behaves like one.
+
+### What Happened?
+Developer Devran Cosmo Uenal demonstrated PlayStation 5 software running on an Xbox Series X through an experimental emulator port called PS5X. The project is based on the open-source KytyPS5 emulator and runs through Xbox Developer Mode rather than the console's normal retail mode.
+
+In plain terms, an emulator is software that imitates one machine on another. The Xbox is not suddenly PS5-compatible. A community-built tool is translating PS5 game code so an Xbox can attempt to run it, with many rough edges.
+
+### Which PS5 Games Work?
+Very few, and they are mostly small. The demo showed the following four titles running, with Xbox controller input working in all of them.
+
+- GEX Trilogy
+- Hellboy: Web of Wyrd
+- Marvel Cosmic Invasion
+- Quake II
+
+None of those are big PlayStation exclusives, as reporting on the demo noted that none of the demonstrated games are PS5 exclusives. If you were hoping for God of War or Spider-Man on an Xbox, this is not that.
+
+### How Well Does It Run?
+Not well, at least not yet. Quake II was the clearest example, with the framerate bouncing between roughly 20 and 40 FPS. Heavier titles struggle far more. Astro Bot and Demon's Souls can run without crashing, but framerates dip into single digits. There is also noticeable input latency, so PS5X is far from a polished way to play.
+
+### Why Is This So Hard on Xbox?
+Two big reasons stand in the way.
+
+- **Different graphics tech.** Everything has to be manually translated to DirectX to work on Xbox, which hurts compatibility and performance.
+- **Console limits.** The Xbox lacks native Vulkan support, which makes the port more complicated than running the same emulator on a PC.
+
+### Is It Official?
+No. The Series X does not officially support PS5 games, and the demonstration relies on an experimental emulator in Developer Mode. Developer Mode is also a separate console state: users must switch back to Retail Mode to access their normal Xbox games and apps, so this is not something you leave running day to day.
+
+### Is It Legal?
+The emulator's developers say they do not distribute games or copyrighted PlayStation system software, and tell users to use legally obtained game files. Downloading pirated games is illegal and we do not recommend it. Buy your games legitimately.
+
+### What About Officially Playing PS5 Games on Xbox Hardware?
+There is a legal route for part of this. Xbox's PC-style handhelds and Windows devices can run PS4 and PS5 games that have been ported to Windows through stores like [Steam](https://store.steampowered.com). That is a much more reliable option than emulation today, with proper performance, saves and controller support.
+
+### Should You Try PS5X?
+Only if you enjoy tinkering. It is a research project, performance is rough, and your best-case result is a few small games running at inconsistent speeds. If you want to play PlayStation titles on an Xbox-branded device, official PC ports are the practical path for now. And if you capture screenshots from your experiments, our [image compressor](/tools/images/image-compressor) will shrink them for sharing without a visible quality drop.
+
+### The Bottom Line
+PS5 games running on Xbox hardware is a real technical milestone, but it is an early experiment, not a feature. Watch how it develops. Emulation on PC has progressed quickly, and Xbox ports may follow, but big exclusives are a long way off.
+
+### Key Takeaways
+- PS5X is an experimental, unofficial emulator port based on KytyPS5, running in Xbox Developer Mode.
+- Only four small, non-exclusive games were shown working, with rough framerates and input latency.
+- DirectX translation and missing Vulkan support make Xbox far harder than PC for PS5 emulation.
+- Downloading pirated games is illegal; use legally obtained game files only.
+- Official PC ports through stores like Steam remain the practical way to play PlayStation games on Xbox-branded hardware.`,
+  },
   {
     slug: 'opus-5-5-and-gpt-6-model-drop-week',
     title: 'Model Drop Week: Claude Opus 5.5 and GPT-6 Updates Land 90 Minutes Apart',
