@@ -24,6 +24,18 @@ export default function Page() {
             name: "WrenchlyTools",
             url: SITE_URL,
             description: `The all-in-one digital utility toolbox with ${TOOLS_REGISTRY.length} free browser-based tools.`,
+            inLanguage: "en",
+            keywords:
+              "free online tools, online utilities, text tools, image tools, calculators, generators, developer tools, converters, PDF tools, AI tools",
+            publisher: {
+              "@type": "Organization",
+              name: "WrenchlyTools",
+              url: SITE_URL,
+              logo: {
+                "@type": "ImageObject",
+                url: `${SITE_URL}/ogimage.png`,
+              },
+            },
             potentialAction: {
               "@type": "SearchAction",
               target: `${SITE_URL}/tools?q={search_term_string}`,

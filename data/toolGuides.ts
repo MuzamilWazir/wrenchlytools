@@ -357,7 +357,7 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
 
   'qr-code-generator': {
     slug: 'qr-code-generator',
-    lastReviewed: '2026-10-07',
+    lastReviewed: '2026-10-20',
     sections: [
       {
         heading: 'What a QR code generator does',
@@ -370,9 +370,37 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       {
         heading: 'How to create a QR code',
         list: [
-          'Choose the data type: **URL**, **plain text** or **WiFi**.',
-          'Enter the content, then adjust colours and size to suit the design.',
-          'Download as **PNG** for everyday use, or **SVG** when you need vector quality for print.',
+          'Choose the data type: **URL or text**, or **WiFi**.',
+          'Enter your content — for WiFi, add the network name, password and security type.',
+          'Pick foreground and background colours, keeping dark-on-light contrast.',
+          'Download as **high-resolution PNG** for everyday use, or **SVG** when you need vector quality for print.',
+        ],
+      },
+      {
+        heading: 'How to make a QR code for WiFi',
+        paragraphs: [
+          'A WiFi QR code lets guests join a network without typing a long password. Choose the **WiFi** data type and the generator builds the code for you.',
+        ],
+        list: [
+          'Choose **WiFi** as the data type.',
+          'Enter the network name (**SSID**) exactly as it appears when you connect.',
+          'Type the network **password**, then set the security type — usually **WPA/WPA2**, the default on modern routers.',
+          'Generate the code, then print it for a counter, table or guest room. Guests scan it with their camera and the phone joins the network automatically.',
+        ],
+      },
+      {
+        heading: 'Static vs dynamic QR codes',
+        paragraphs: [
+          'A **static** QR code embeds the data directly in the pattern. It works forever, cannot be edited, and does not rely on any server — this is what this generator creates.',
+          'A **dynamic** QR code points to a short redirect link that a provider controls. The link can be changed or tracked afterwards, but the code stops working if you cancel the subscription or the service shuts down. That business model is why some "free" generators make you pay to keep a code alive.',
+          'For menus, WiFi, business cards and print that must last for years, a static code is the safer choice.',
+        ],
+      },
+      {
+        heading: 'Free QR code generator with no expiration',
+        paragraphs: [
+          'This tool creates **static QR codes that never expire**. The data lives in the code itself, so there is no server to keep running, no expiry date and no subscription to renew.',
+          'There is **no sign-up**, no account and **no watermark**, and the whole process runs **100% in your browser** — your link, WiFi password or text is never uploaded. Download in **PNG** or **SVG** as many times as you like.',
         ],
       },
       {
@@ -380,7 +408,7 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
         paragraphs: [
           'Typical uses include WiFi details for a guest network, a link to a menu or portfolio, event information, and a vCard so a new contact can save your details in a single scan.',
           'Two things decide whether a code actually scans. **Contrast** comes first: keep dark dots on a light background and avoid low-contrast colour pairs. **Size** comes next: a code on a business card can be small because it is read from a few centimetres, while a code on a poster or sign must be large enough for each module to stay clear from the distance people will stand.',
-          'Higher **error correction** levels let a code survive smudges, print damage or a small logo placed in the centre, because the encoding carries redundant data.',
+          'Higher **error correction** levels let a code survive smudges, folds or a little dirt, because the encoding carries redundant data.',
         ],
       },
       {
@@ -400,19 +428,29 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     ],
     extraFaqs: [
       {
-        question: 'Can a QR code store a WiFi password?',
+        question: 'Can I turn an image into a QR code?',
         answer:
-          'Yes. Choose the WiFi data type and enter the network name, password and security type. A phone that scans the code can join the network without anyone typing the password.',
+          'A QR code cannot hold a full image, but it can link to one. Upload your image to a hosting service or cloud drive, copy the public link, and paste it into the generator.',
       },
       {
-        question: 'What is error correction in a QR code?',
+        question: 'Is there a Google QR code generator?',
         answer:
-          'Error correction adds redundant data so a code can still be read when part of it is smudged, damaged or covered. Higher levels tolerate more damage, and some designs place a small logo in the centre.',
+          'Google Chrome has a built-in option to create a QR code for the page you are viewing. For custom colours, WiFi codes and PNG or SVG downloads you can use this free tool, which is not affiliated with Google.',
+      },
+      {
+        question: 'Do QR codes need an internet connection to scan?',
+        answer:
+          'No. A phone can read the code offline. A connection is only needed if the code opens a website.',
       },
       {
         question: 'Do I need an app to scan a QR code?',
         answer:
           'Usually not. The camera app built into recent iOS and Android phones scans QR codes natively, so a separate scanner app is rarely necessary.',
+      },
+      {
+        question: "What's the best free QR code generator?",
+        answer:
+          'The best one depends on your needs, but look for static codes that never expire, no forced sign-up, high-resolution PNG or SVG export, and strong privacy. This tool processes everything in your browser, so your data is not uploaded.',
       },
     ],
   },

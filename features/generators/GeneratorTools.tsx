@@ -24,30 +24,69 @@ function GenCopyButton({ text }: { text: string }) {
 }
 
 // 1. QR Code Generator
+type QrMode = 'url' | 'wifi';
+
+function escapeWifiField(value: string) {
+ return value.replace(/([\\;,:"])/g, '\\$1');
+}
+
 export function QrCodeGeneratorTool() {
+ const [mode, setMode] = useState<QrMode>('url');
  const [text, setText] = useState('https://wrenchlytools.com');
+ const [ssid, setSsid] = useState('');
+ const [wifiPassword, setWifiPassword] = useState('');
+ const [wifiSecurity, setWifiSecurity] = useState<'WPA' | 'WEP' | 'nopass'>('WPA');
+ const [wifiHidden, setWifiHidden] = useState(false);
  const [fgColor, setFgColor] = useState('#101B2D');
  const [bgColor, setBgColor] = useState('#FFFFFF');
  const [qrUrl, setQrUrl] = useState<string>('');
+ const [svgUrl, setSvgUrl] = useState<string>('');
+
+ const payload = useMemo(() => {
+ if (mode === 'wifi') {
+ const pass = wifiSecurity === 'nopass' ? '' : `P:${escapeWifiField(wifiPassword)};`;
+ const hidden = wifiHidden ? 'H:true;' : '';
+ return `WIFI:T:${wifiSecurity};S:${escapeWifiField(ssid)};${pass}${hidden};`;
+ }
+ return text;
+ }, [mode, text, ssid, wifiPassword, wifiSecurity, wifiHidden]);
 
  useEffect(() => {
- if (!text) return;
- QRCode.toDataURL(text, {
- width: 400,
- margin: 2,
- color: {
- dark: fgColor,
- light: bgColor,
- },
- })
+ if (!payload) {
+ setQrUrl('');
+ setSvgUrl('');
+ return;
+ }
+ const color = { dark: fgColor, light: bgColor };
+ QRCode.toDataURL(payload, { width: 1024, margin: 2, color })
  .then((url) => setQrUrl(url))
  .catch((err) => console.error(err));
- }, [text, fgColor, bgColor]);
+ QRCode.toString(payload, { type: 'svg', margin: 2, color })
+ .then((svg) => setSvgUrl(`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`))
+ .catch((err) => console.error(err));
+ }, [payload, fgColor, bgColor]);
 
  return (
  <div className="space-y-6">
  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
  <div className="space-y-4">
+ <div>
+ <label className="block text-xs font-semibold text-stone-500 mb-1">Data type</label>
+ <div className="inline-flex rounded-xl border border-stone-200 bg-stone-50 p-0.5">
+ {(['url', 'wifi'] as QrMode[]).map((m) => (
+ <button
+ key={m}
+ type="button"
+ onClick={() => setMode(m)}
+ className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors ${mode === m ? 'bg-white text-moss-700 shadow-sm' : 'text-stone-500 hover:text-stone-700'}`}
+ >
+ {m === 'url' ? 'URL or text' : 'WiFi'}
+ </button>
+ ))}
+ </div>
+ </div>
+
+ {mode === 'url' ? (
  <div>
  <label className="block text-xs font-semibold text-stone-500 mb-1">Target URL or Plain Text</label>
  <textarea
@@ -57,6 +96,48 @@ export function QrCodeGeneratorTool() {
  className="w-full p-3 text-sm rounded-xl border border-stone-200 bg-white"
  />
  </div>
+ ) : (
+ <div className="space-y-3">
+ <div>
+ <label className="block text-xs font-semibold text-stone-500 mb-1">Network name (SSID)</label>
+ <input
+ value={ssid}
+ onChange={(e) => setSsid(e.target.value)}
+ className="w-full p-2.5 text-sm rounded-xl border border-stone-200 bg-white"
+ />
+ </div>
+ <div>
+ <label className="block text-xs font-semibold text-stone-500 mb-1">Password</label>
+ <input
+ value={wifiPassword}
+ onChange={(e) => setWifiPassword(e.target.value)}
+ className="w-full p-2.5 text-sm rounded-xl border border-stone-200 bg-white"
+ />
+ </div>
+ <div className="flex flex-wrap items-end gap-4">
+ <div>
+ <label className="block text-xs font-semibold text-stone-500 mb-1">Security</label>
+ <select
+ value={wifiSecurity}
+ onChange={(e) => setWifiSecurity(e.target.value as 'WPA' | 'WEP' | 'nopass')}
+ className="rounded-xl border border-stone-200 bg-white p-2.5 text-sm"
+ >
+ <option value="WPA">WPA / WPA2</option>
+ <option value="WEP">WEP</option>
+ <option value="nopass">None</option>
+ </select>
+ </div>
+ <label className="flex items-center gap-2 pb-2.5 text-xs font-semibold text-stone-500">
+ <input
+ type="checkbox"
+ checked={wifiHidden}
+ onChange={(e) => setWifiHidden(e.target.checked)}
+ />
+ Hidden network
+ </label>
+ </div>
+ </div>
+ )}
 
  <div className="flex gap-4">
  <div>
@@ -81,16 +162,28 @@ export function QrCodeGeneratorTool() {
  </div>
 
  <div className="flex flex-col items-center justify-center p-6 border rounded-2xl bg-stone-50 text-center">
- {qrUrl && <img src={qrUrl} alt="QR Code" className="w-56 h-56 rounded-xl shadow-sm mb-4" />}
+ {qrUrl && <img src={qrUrl} alt="Free QR code generator preview" className="w-56 h-56 rounded-xl shadow-sm mb-4" />}
  {qrUrl && (
+ <div className="flex flex-wrap items-center justify-center gap-2">
  <a
  href={qrUrl}
  download="wrenchly-qrcode.png"
  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-moss-500 text-white text-xs font-bold"
  >
  <Download className="w-3.5 h-3.5" />
- <span>Download High-Res QR PNG</span>
+ <span>Download PNG</span>
  </a>
+ {svgUrl && (
+ <a
+ href={svgUrl}
+ download="wrenchly-qrcode.svg"
+ className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-moss-200 bg-white text-moss-700 text-xs font-bold"
+ >
+ <Download className="w-3.5 h-3.5" />
+ <span>Download SVG</span>
+ </a>
+ )}
+ </div>
  )}
  </div>
  </div>

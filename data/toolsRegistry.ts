@@ -1218,25 +1218,28 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     slug: 'qr-code-generator',
     name: 'QR Code Generator',
     category: 'generators',
-    shortDescription: 'Create custom QR codes for URLs, WiFi networks, text, and contacts with colors.',
-    longDescription: 'Generate high-resolution QR codes with customizable foreground and background colors, error correction levels, and SVG/PNG download.',
+    shortDescription: 'Create free static QR codes for URLs, WiFi, text and contacts — customize colors and download PNG or SVG.',
+    longDescription: 'Generate a free static QR code that never expires — no sign-up and no watermark. Encode a URL, WiFi login, text, email or phone number, customize the colors, and download it as a high-resolution PNG or vector SVG. Everything runs 100% in your browser.',
     icon: 'QrCode',
-    tags: ['qr code', 'barcode', 'wifi qr', 'link qr', 'scan'],
+    tags: ['qr code', 'qr code generator', 'static qr code', 'wifi qr', 'no expiration', 'barcode', 'link qr', 'generator'],
     route: '/tools/generators/qr-code-generator',
-    seoTitle: 'QR Code Generator — Free Custom QR Codes with Logo',
+    seoTitle: 'Free QR Code Generator – No Expiration, No Sign-Up',
+    h1: 'Free QR Code Generator (Static, No Expiration)',
     isPopular: true,
     processingType: 'client',
     howToUse: [
-      'Choose data type: URL, Plain Text, or WiFi.',
-      'Customize colors and size.',
-      'Download as PNG or vector SVG.'
+      'Choose the data type: URL or text, or WiFi.',
+      'Enter your content — for WiFi add the network name, password and security type.',
+      'Customize the foreground and background colors.',
+      'Download your QR code as a high-resolution PNG or vector SVG.'
     ],
     faqs: [
-      { question: 'Do these QR codes expire?', answer: 'No. They encode static text directly into the pattern and work indefinitely.' },
-      { question: 'What can you put inside a QR code?', answer: 'URLs, Wi-Fi network logins, plain text, email addresses, and virtual contact vCards.' },
-      { question: 'Are static QR codes free to generate?', answer: 'Yes, basic QR codes created online are free and never expire.' },
-      { question: 'Can you customize the colors of a QR code?', answer: 'Many modern QR generators allow you to change dot colors, background colors, and add a center logo.' },
-      { question: 'Do QR codes require an internet connection to scan?', answer: 'The smartphone camera scans the embedded data directly; an internet connection is only needed if the code opens a website link.' }
+      { question: 'Do these QR codes expire?', answer: 'No. These are static QR codes, so the data is encoded directly into the pattern. They have no expiration date and do not depend on our servers or a subscription.' },
+      { question: 'Is this QR code generator really free?', answer: 'Yes. You can generate and download static QR codes at no cost, without creating an account or adding a watermark.' },
+      { question: 'What is a static QR code, and how is it different from a dynamic one?', answer: 'A static QR code stores your data (a link, text or WiFi login) permanently inside the code. A dynamic code points to a redirect link that a company controls, which is how some services can make codes expire or charge to keep them working.' },
+      { question: 'How do I make a QR code for WiFi?', answer: 'Choose the WiFi data type, enter your network name (SSID), password and security type (usually WPA/WPA2), then download the code. Guests can scan it with their phone camera to join without typing the password.' },
+      { question: 'Can I create a WhatsApp QR code?', answer: 'Yes, in a simple way. Create a WhatsApp chat link in the format https://wa.me/yourphonenumber and paste it into the URL field. Scanning the code opens a chat with that number.' },
+      { question: 'Can I customize the colors of a QR code?', answer: 'Yes. Pick any foreground and background colors, but keep strong contrast (dark code on a light background) so phones can still scan it.' }
     ],
     relatedToolSlugs: ['barcode-generator', 'uuid-generator'],
   },
@@ -1344,7 +1347,7 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     faqs: [
       { question: 'Are these true UUID v4?', answer: 'Yes, generated according to RFC 4122 using cryptographic pseudo-random values.' }
     ],
-    relatedToolSlugs: ['password-generator', 'hash-generator'],
+    relatedToolSlugs: ['password-generator', 'hash-generator', 'qr-code-generator'],
   },
   {
     slug: 'barcode-generator',

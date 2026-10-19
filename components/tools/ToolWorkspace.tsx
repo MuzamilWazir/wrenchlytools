@@ -49,7 +49,7 @@ export function ToolWorkspace({ tool, children, guide }: ToolWorkspaceProps) {
           <div>
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
               <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-ink">
-                {tool.name}
+                {tool.h1 ?? tool.name}
               </h1>
               <span className="inline-flex items-center gap-1 rounded-full bg-moss-50 px-2.5 py-1 text-[11px] font-semibold text-moss-700">
                 <Shield className="h-3.5 w-3.5" />

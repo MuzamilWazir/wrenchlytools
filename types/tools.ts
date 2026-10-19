@@ -40,6 +40,8 @@ export interface ToolDefinition {
   relatedToolSlugs: string[];
   /** Full <title> override (used for priority tools where the default template is too generic). */
   seoTitle?: string;
+  /** Keyword-rich <h1> override. Falls back to `name` when omitted. */
+  h1?: string;
 }
 
 export interface GuideTable {

@@ -96,6 +96,10 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       "@type": "Organization",
       name: "WrenchlyTools",
       url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/ogimage.png`,
+      },
     },
   };
 
