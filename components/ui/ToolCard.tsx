@@ -89,23 +89,31 @@ export function ToolCard({
         className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/50 via-transparent to-moss-500/[0.04] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
       />
 
-      <div className="relative flex items-start justify-between gap-3">
+      {/* Top Icon Badge */}
+      <div className="icon-badge relative flex items-start justify-between gap-3">
         <ToolIconTile tool={tool} />
         {tool.isPopular && <PopularBadge />}
       </div>
 
-      <h3 className="relative mt-3.5 text-sm font-bold leading-snug text-ink transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-moss-700 group-hover:to-moss-500 group-hover:bg-clip-text group-hover:text-transparent">
-        {tool.name}
-      </h3>
-      <p className="relative mt-1.5 line-clamp-2 text-xs leading-relaxed text-stone-600">
-        {tool.shortDescription}
-      </p>
+      {/* Content Section */}
+      <div className="card-content relative mt-3.5">
+        <h3 className="text-sm font-bold leading-snug text-ink transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-moss-700 group-hover:to-moss-500 group-hover:bg-clip-text group-hover:text-transparent">
+          {tool.name}
+        </h3>
+        <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-stone-600">
+          {tool.shortDescription}
+        </p>
+      </div>
 
-      <div className="relative mt-3.5 flex items-center justify-between gap-2 border-t border-line pt-3">
-        <span className="truncate text-[10px] font-semibold uppercase tracking-wide text-stone-500">
+      {/* Divider Line */}
+      <div className="card-divider relative mt-3.5 border-t border-line" />
+
+      {/* Footer Row */}
+      <div className="card-footer relative mt-3 flex items-center justify-between gap-2">
+        <span className="category-tag truncate text-[10px] font-semibold uppercase tracking-wide text-stone-500">
           {footerNote ?? CATEGORIES[tool.category]?.name}
         </span>
-        <span className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-moss-600 transition-colors duration-300 group-hover:text-moss-700">
+        <span className="action-btn inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-moss-600 transition-colors duration-300 group-hover:text-moss-700">
           {footerLabel}
           <ArrowRight className="h-3.5 w-3.5 transition-all duration-300 group-hover:translate-x-1 group-hover:drop-shadow-[0_0_6px_rgba(14,107,85,0.8)]" />
         </span>
