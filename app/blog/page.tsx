@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BlogIndex } from "@/components/pages/BlogIndex";
 import { BLOG_POSTS } from "@/data/blogPosts";
-import { SITE_OG_IMAGE, SITE_URL } from "@/lib/site";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Blog & Educational Guides",
@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     siteName: "WrenchlyTools",
     images: [
       {
-        url: SITE_OG_IMAGE,
+        url: "/og-blog.png",
         width: 1200,
         height: 630,
-        alt: "WrenchlyTools blog — guides on productivity, privacy and developer tools",
+        alt: "WrenchlyTools blog – in-depth guides on digital productivity and online utilities.",
       },
     ],
   },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "WrenchlyTools Blog & Educational Guides",
     description:
       "In-depth guides on digital productivity, file privacy, developer utilities, image optimization, and tax calculations.",
-    images: [SITE_OG_IMAGE],
+    images: ["/og-blog.png"],
   },
 };
 

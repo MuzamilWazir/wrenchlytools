@@ -11,7 +11,10 @@ export const SUPPORT_EMAIL = 'hello@wrenchlytools.com';
 
 /**
  * Absolute base URL used for canonical links, Open Graph URLs and JSON-LD.
- * Set NEXT_PUBLIC_APP_URL (or APP_URL) in the deployment environment.
+ * Defaults to the production domain so share previews are never localhost.
+ * Override with NEXT_PUBLIC_APP_URL (or APP_URL) for other environments.
  */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL || 'http://localhost:3000';
+  process.env.NEXT_PUBLIC_APP_URL ||
+  process.env.APP_URL ||
+  'https://wrenchlytools.vercel.app';
