@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { CATEGORIES } from '@/data/categories';
@@ -55,6 +56,15 @@ export function CategoryHeroBanner({ category }: { category: CategoryInfo }) {
           <h1 className="text-3xl font-black tracking-tight sm:text-4xl">{category.name}</h1>
           <p className="mt-2 text-sm leading-relaxed text-stone-300">{category.description}</p>
         </div>
+      </div>
+      <div className="relative hidden aspect-[1200/630] w-full max-w-sm shrink-0 overflow-hidden rounded-2xl ring-1 ring-inset ring-moss-700 sm:block">
+        <Image
+          src={`/og-${category.slug}.png`}
+          alt={`${category.name} on WrenchlyTools`}
+          fill
+          sizes="(max-width: 640px) 100vw, 384px"
+          className="object-cover"
+        />
       </div>
     </div>
   );
