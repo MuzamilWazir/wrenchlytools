@@ -249,16 +249,86 @@ export function SummarizerTool() {
 }
 
 // 4. Professional Email Writer
+const EMAIL_TONES = ['Formal', 'Polite', 'Assertive'] as const;
+type EmailTone = (typeof EMAIL_TONES)[number];
+
+const EMAIL_PURPOSES = [
+ 'Follow-up',
+ 'Thank-You',
+ 'Request',
+ 'Pitch',
+ 'Apology',
+] as const;
+type EmailPurpose = (typeof EMAIL_PURPOSES)[number];
+
+function buildEmailDraft(
+ purpose: EmailPurpose,
+ tone: EmailTone,
+ recipient: string,
+ points: string
+ ) {
+ const name = recipient.trim() || 'there';
+ let topic = points.trim().replace(/\s+/g, ' ');
+ if (topic && !/[.!?]$/.test(topic)) topic += '.';
+ if (!topic) topic = 'the items we discussed.';
+
+ const greeting: Record<EmailTone, string> = {
+ Formal: `Dear ${name},`,
+ Polite: `Hi ${name},`,
+ Assertive: `Hello ${name},`,
+ };
+ const opener: Record<EmailTone, string> = {
+ Formal: 'I hope this message finds you well.',
+ Polite: "I hope you're having a good week.",
+ Assertive: "I'll keep this brief.",
+ };
+ const closer: Record<EmailTone, string> = {
+ Formal: 'Thank you for your time and consideration.',
+ Polite: 'Thanks so much for your time.',
+ Assertive: 'Thanks in advance for a quick response.',
+ };
+ const signOff: Record<EmailTone, string> = {
+ Formal: 'Sincerely,',
+ Polite: 'Best regards,',
+ Assertive: 'Regards,',
+ };
+
+ const drafts: Record<EmailPurpose, { subject: string; body: string }> = {
+ 'Follow-up': {
+ subject: 'Following up',
+ body: `I am writing to follow up on ${topic} Please let me know if you have any questions, or if it would help to schedule a brief call to go over next steps.`,
+ },
+ 'Thank-You': {
+ subject: 'Thank you',
+ body: `Thank you for ${topic.startsWith('the ') ? topic : `your help with ${topic}`} Your time and support are genuinely appreciated, and it made a real difference.`,
+ },
+ Request: {
+ subject: 'Quick request',
+ body: `I would like to request ${topic} Please let me know if this is possible, or what the next steps look like from your side.`,
+ },
+ Pitch: {
+ subject: 'Introduction and quick idea',
+ body: `I wanted to briefly introduce myself and share an idea: ${topic} If this is relevant to your team, I would be glad to send over a short overview or set up a brief call.`,
+ },
+ Apology: {
+ subject: 'Apologies',
+ body: `I owe you an apology regarding ${topic} I understand the inconvenience this may have caused, and I am making sure it does not happen again. Please let me know if there is anything I can do to make it right.`,
+ },
+ };
+
+ const draft = drafts[purpose];
+ return `Subject: ${draft.subject}\n\n${greeting[tone]}\n\n${opener[tone]}\n\n${draft.body}\n\n${closer[tone]}\n\n${signOff[tone]}`;
+}
+
 export function EmailWriterTool() {
- const [purpose, setPurpose] = useState('Follow-up');
+ const [purpose, setPurpose] = useState<EmailPurpose>('Follow-up');
+ const [tone, setTone] = useState<EmailTone>('Polite');
  const [recipient, setRecipient] = useState('Sarah');
- const [points, setPoints] = useState('Following up on our project proposal from Tuesday; wanted to check if you had questions.');
+ const [points, setPoints] = useState('Following up on our project proposal from Tuesday; wanted to check if you had any questions.');
  const [emailText, setEmailText] = useState('');
 
  const generateEmail = () => {
- setEmailText(
- `Subject: Following up on our project proposal\n\nHi ${recipient},\n\nI hope you're having a productive week.\n\nI am writing to quickly follow up regarding the project proposal we discussed on Tuesday. Please let me know if you or the team had any questions or if you would like to arrange a brief call to review next steps.\n\nLooking forward to hearing from you.\n\nBest regards,`
- );
+ setEmailText(buildEmailDraft(purpose, tone, recipient, points));
  };
 
  return (
@@ -268,21 +338,42 @@ export function EmailWriterTool() {
  <label className="block text-xs font-semibold text-stone-500 mb-1">Email Purpose</label>
  <select
  value={purpose}
- onChange={(e) => setPurpose(e.target.value)}
+ onChange={(e) => setPurpose(e.target.value as EmailPurpose)}
  className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 bg-white"
  >
  <option value="Follow-up">Follow-up on Meeting/Proposal</option>
  <option value="Thank-You">Thank You Note</option>
- <option value="Request">Information Request</option>
+ <option value="Request">Request (Leave, Extension, Information)</option>
  <option value="Pitch">Cold Introduction / Pitch</option>
+ <option value="Apology">Apology / Late Reply</option>
  </select>
  </div>
+ <div>
+ <label className="block text-xs font-semibold text-stone-500 mb-1">Tone</label>
+ <div className="flex gap-2">
+ {EMAIL_TONES.map((t) => (
+ <button
+ key={t}
+ onClick={() => setTone(t)}
+ className={`px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
+ tone === t ? 'bg-moss-500 text-white' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+ }`}
+ >
+ {t}
+ </button>
+ ))}
+ </div>
+ </div>
+ </div>
+
+ <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
  <div>
  <label className="block text-xs font-semibold text-stone-500 mb-1">Recipient Name</label>
  <input
  type="text"
  value={recipient}
  onChange={(e) => setRecipient(e.target.value)}
+ placeholder="e.g. Sarah"
  className="w-full px-3 py-2 text-sm rounded-xl border border-stone-200 bg-white"
  />
  </div>
@@ -294,6 +385,7 @@ export function EmailWriterTool() {
  value={points}
  onChange={(e) => setPoints(e.target.value)}
  rows={3}
+ placeholder="e.g. Following up on the proposal we sent last Tuesday; checking if you had any questions."
  className="w-full p-3 text-xs rounded-xl border border-stone-200 bg-white"
  />
  </div>

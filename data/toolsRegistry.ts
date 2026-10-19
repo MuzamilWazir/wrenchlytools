@@ -2272,7 +2272,7 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     faqs: [
       { question: 'Does it check punctuation?', answer: 'Yes, comma splices, missing periods, and apostrophe errors are detected.' }
     ],
-    relatedToolSlugs: ['paraphraser', 'readability-score'],
+    relatedToolSlugs: ['paraphraser', 'readability-score', 'email-writer'],
   },
   {
     slug: 'summarizer',
@@ -2299,20 +2299,46 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     name: 'Professional Email Writer',
     category: 'ai',
     shortDescription: 'Draft polished business, follow-up, pitch, and customer service emails in seconds.',
-    longDescription: 'Generate professional emails by providing simple bullet points, recipient relationship, and desired tone (Polite, Assertive, Formal).',
+    longDescription:
+      'Generate free professional emails with subject lines — follow-ups, requests, thank-yous and pitches for work, study or job applications. Pick a purpose and tone, add your points, and copy the draft.',
     icon: 'Mail',
-    tags: ['email', 'email writer', 'business', 'follow up', 'communication'],
+    tags: ['email', 'email writer', 'business', 'follow up', 'communication', 'formal email'],
     route: '/tools/ai/email-writer',
-    processingType: 'hybrid',
+    processingType: 'client',
+    seoTitle: 'Free Professional Email Writer — Generate Emails with Subject Lines',
     howToUse: [
-      'Select email purpose (Follow-up, Request, Thank You, Pitch).',
-      'Provide recipient name and 2-3 key bullet points.',
-      'Generate email with subject line and copy to clipboard.'
+      'Select the email purpose (follow-up, thank you, request, pitch or apology) and a tone: formal, polite or assertive.',
+      'Enter the recipient name and 1-2 key talking points you want covered.',
+      'Generate the draft with its subject line, then copy it to your clipboard and edit as needed.',
     ],
     faqs: [
-      { question: 'Does it include a subject line?', answer: 'Yes, every generated email includes an attention-grabbing subject line.' }
+      {
+        question: 'How do I write a professional email?',
+        answer:
+          'Use a clear subject line, a short greeting, one or two sentences of context, a specific request or call to action, and a polite sign-off. Keep the body under about 150 words and make the next step obvious.',
+      },
+      {
+        question: 'What is a good subject line for a follow-up email?',
+        answer:
+          'Keep it short and specific: "Following up on Tuesday\u2019s proposal" works better than "Quick question". Reference the meeting, role or document so the recipient knows what the email is about before opening it.',
+      },
+      {
+        question: 'How do I end a professional email?',
+        answer:
+          'End with a sentence that states the next step or asks a clear question, then a sign-off that matches the tone: "Sincerely" for formal email, "Best regards" for most workplace messages, and your full name underneath.',
+      },
+      {
+        question: 'How long should a professional email be?',
+        answer:
+          'Aim for 50 to 150 words for routine workplace email. If the message needs more than about 200 words, consider a short summary in the email and the detail in an attachment or a call.',
+      },
+      {
+        question: 'Can I use these drafts for job applications?',
+        answer:
+          'Yes \u2014 the drafts work well as a starting structure for application follow-ups and recruiter messages. Always personalize the details, company name and role before sending, and double-check every fact.',
+      },
     ],
-    relatedToolSlugs: ['cover-letter-generator', 'paraphraser'],
+    relatedToolSlugs: ['cover-letter-generator', 'paraphraser', 'grammar-checker', 'word-counter'],
   },
   {
     slug: 'youtube-title-generator',

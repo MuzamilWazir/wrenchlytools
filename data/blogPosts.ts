@@ -22,6 +22,67 @@ export interface BlogPost {
 export const BLOG_POSTS: BlogPost[] = [
   // ---------- Latest tech news (October 2026) ----------
   {
+    slug: 'how-to-write-a-follow-up-email',
+    title: 'How to Write a Follow-Up Email That Gets a Reply (with Samples)',
+    excerpt:
+      'A follow-up email should be short, specific and easy to answer. Here is the structure that works, plus ready-to-copy samples for interviews, proposals and meetings.',
+    category: 'Work & Communication',
+    date: 'October 19, 2026',
+    datePublished: '2026-10-19',
+    dateModified: '2026-10-19',
+    author: 'WrenchlyTools Editorial Team',
+    readTime: '7 min read',
+    relatedToolSlug: 'email-writer',
+    content: `Most people never send the second email. They wait for a reply that does not come, assume the other person is busy, and move on. In reality, a single well-written follow-up often gets a response the first message never did. The trick is making it easy to answer.
+
+### When to Send a Follow-Up
+Timing depends on the situation, but the same rules apply almost everywhere.
+
+- After a job interview: wait two to three business days.
+- After sending a proposal or quote: four to five business days.
+- After a meeting where someone promised information: one to two days after the deadline they gave.
+- After a networking contact or cold introduction: five to seven days.
+
+If you have not heard back after two follow-ups, stop. A third message rarely helps and can hurt. Send one polite nudge, then one final short note, then let it go.
+
+### The Structure That Works
+A good follow-up email has five parts, and it fits in under 150 words.
+
+1. **A specific subject line.** Reference the original conversation: "Following up on Tuesday's proposal" or "Following up on the Marketing Analyst interview".
+2. **A reminder of context.** One sentence is enough. The reader should know what you are referring to without scrolling.
+3. **Your reason for writing.** Restate your interest or your question, briefly. Do not re-pitch everything from the first email.
+4. **A clear call to action.** Ask one specific question with an easy answer: "Are you available for a 15-minute call this week?"
+5. **A polite close.** "Best regards" works in almost every workplace setting. Match the tone to your relationship.
+
+### Sample Follow-Up Emails
+Here are four you can copy and adapt.
+
+**After an interview.** Subject: Following up on the Marketing Analyst interview. Dear Ms Ahmed, Thank you again for speaking with me on Tuesday about the Marketing Analyst role. I enjoyed learning about the team's upcoming reporting projects. I wanted to reiterate my interest and confirm my availability to start from the first of next month. Please let me know if you need any further information from me. Sincerely, [Your name].
+
+**After a proposal.** Subject: Following up on last week's proposal. Hi Sarah, I hope you are having a good week. I am writing to follow up on the project proposal I sent last Tuesday. Please let me know if you or the team had any questions, or if it would help to schedule a brief call to go over next steps. Best regards, [Your name].
+
+**After a meeting.** Subject: Following up on our meeting. Hi James, Thanks for the time on Monday. As promised, here is the case study we discussed: [link]. Happy to answer any questions it raises. Would a short call on Thursday or Friday work for you? Best regards, [Your name].
+
+**After no reply to a first email.** Subject: Re: [original subject]. Hi Tom, Just floating this back to the top of your inbox in case it got buried. My question is still the same: could you confirm by Friday whether the budget has been approved? Thanks either way. Best regards, [Your name].
+
+### Common Mistakes
+- Writing a long recap of the entire history. One sentence of context is plenty.
+- Ending with "Let me know your thoughts" instead of a specific question or deadline.
+- Sending the follow-up too early, which reads as pressure rather than persistence.
+- Changing the subject line every time, which makes the thread harder to follow.
+- Forgetting to proofread. A misspelled name undoes the whole message.
+
+### Generate a Draft in Seconds
+If you would rather start from a finished draft than a blank page, our [professional email writer](/tools/ai/email-writer) builds a complete follow-up email with a subject line, greeting, call to action and sign-off. Pick the purpose and tone, add your talking points, and edit the result until it sounds like you. It runs entirely in your browser, so your notes never leave your device. For longer messages, the [word counter](/tools/text/word-counter) helps you keep it under 150 words, and a quick pass through the [grammar checker](/tools/ai/grammar-checker) catches anything you missed.
+
+### Key Takeaways
+- One polite follow-up two to three days after the original message dramatically improves reply rates.
+- Keep it under 150 words: context sentence, reason, one specific ask, polite close.
+- A specific subject line referencing the original conversation gets the email opened.
+- After two unanswered follow-ups, stop following up.
+- The [email writer](/tools/ai/email-writer) generates a complete follow-up draft you can personalize in a minute.`,
+  },
+  {
     slug: 'ps5-games-running-on-xbox-series-x',
     title: 'PS5 Games Running on Xbox Series X? The PS5X Emulator Explained',
     excerpt:

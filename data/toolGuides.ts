@@ -689,6 +689,72 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       },
     ],
   },
+  'email-writer': {
+    slug: 'email-writer',
+    lastReviewed: '2026-10-19',
+    sections: [
+      {
+        heading: 'How to write a professional email',
+        paragraphs: [
+          'A professional email does one job: it gets a clear message to the right person and makes the next step obvious. Whether you are writing to a manager, a client, a professor or a recruiter, the same structure works every time.',
+          'Start with a **subject line** that tells the recipient what the email is about before they open it. Then use a greeting that matches your relationship, one or two sentences of context, the main point or request, and a **call to action** — the specific thing you want them to do. Close with a polite sign-off and your full name.',
+          'Tone matters as much as content. A formal tone ("Dear Mr Khan, ... Sincerely,") suits first contact, senior recipients and official requests. A polite, friendly tone ("Hi Sarah, ... Best regards,") fits most workplace messages. An assertive tone ("Hello team, ... Regards,") works when you need a response by a deadline and the relationship can carry it.',
+          'Follow-ups deserve special attention, because a second message often does the work the first one could not. Our step-by-step guide on [how to write a follow-up email](/blog/how-to-write-a-follow-up-email) covers timing, structure and four ready-to-copy samples.',
+          'The most common mistakes are easy to avoid: burying the request halfway down, leaving the subject line vague, writing three paragraphs when one would do, forgetting the recipient\u2019s name, and sending without proofreading. A quick pass with a [grammar checker](/tools/ai/grammar-checker) and a glance at the [word counter](/tools/text/word-counter) catch most of these before anyone else sees them.',
+        ],
+      },
+      {
+        heading: 'Professional email examples you can copy',
+        paragraphs: [
+          'These ready-made samples cover the situations people search for most. Swap in your own details, or use the tool above to generate a draft with your recipient\u2019s name, tone and talking points already filled in.',
+          '**Follow-up email after an interview.** Subject: Following up on the interview for the Marketing Analyst role \u2014 Dear Ms Ahmed, Thank you for taking the time to speak with me on Tuesday about the Marketing Analyst position. I enjoyed learning about the team and the upcoming reporting projects. I wanted to reiterate my interest in the role and confirm that I am available to start from the first of next month. Please let me know if you need any further information from me. Sincerely, [Your name].',
+          '**Follow-up email after a proposal or meeting.** Subject: Following up on Tuesday\u2019s proposal \u2014 Hi Sarah, I hope you are having a good week. I am writing to follow up on the project proposal we discussed on Tuesday. Please let me know if you or the team had any questions, or if it would help to schedule a brief call to go over next steps. Best regards, [Your name].',
+          '**Request email (leave, extension or information).** Subject: Leave request for 24\u201326 October \u2014 Dear [Manager name], I would like to request annual leave from Monday 24 October to Wednesday 26 October. I will hand over my open tasks to [Colleague name] before I leave and will be reachable by email for urgent matters. Please let me know if this can be approved. Thank you, [Your name].',
+          '**Thank-you email.** Subject: Thank you \u2014 Hi James, Thank you for your help with the client presentation last week. Your feedback on the pricing slides made a real difference, and the meeting went well as a result. I appreciate you making the time. Best regards, [Your name].',
+          '**Sales or business pitch email.** Subject: A quick idea for reducing your support response times \u2014 Dear Ms Khan, I wanted to briefly introduce myself and share an idea: our ticket triage tool has helped teams of your size cut first-response times by about 40 percent. If this is relevant to your support operation, I would be glad to send over a short case study, or we can set up a 15-minute call this week. Regards, [Your name].',
+          '**Complaint email.** Subject: Complaint regarding order #48291 \u2014 Dear Customer Service, I am writing about order #48291, which arrived on Monday with a damaged item. I have attached photographs and would appreciate a replacement or a refund at your earliest convenience. I have been a customer for three years and hope this can be resolved quickly. Sincerely, [Your name].',
+          '**Resignation email.** Subject: Resignation \u2014 [Your name] \u2014 Dear [Manager name], Please accept this email as formal notice of my resignation from my position as [Job title], effective two weeks from today (last working day: [date]). I am happy to help hand over my projects during the notice period. Thank you for the opportunities during my time here. Sincerely, [Your name].',
+          '**Apology or late-reply email.** Subject: Apologies for the delayed reply \u2014 Hi Tom, Please accept my apologies for the slow response \u2014 your email got buried in a busy week. Here is the answer you needed: [answer]. I am making sure it does not happen again. Thanks for your patience. Best regards, [Your name].',
+        ],
+      },
+      {
+        heading: 'Tips for writing emails that get replies',
+        list: [
+          '**Keep it short.** Most professional emails perform best between 50 and 150 words. If it runs past 200, put the summary in the email and the detail in an attachment.',
+          '**Write the subject line last.** Once the body is settled, name the topic in six to eight specific words: "Following up on Tuesday\u2019s proposal" beats "Quick question" every time.',
+          '**Ask for one thing.** Multiple requests in one email slow replies down. If you need several answers, list them as short numbered points so each one is easy to act on.',
+          '**Match tone to the recipient.** Formal for first contact and senior people, polite for everyday workplace mail, assertive only when a deadline genuinely requires it.',
+          '**Make the call to action obvious.** End with a specific next step: "Could you confirm by Thursday?" rather than "Let me know your thoughts".',
+          '**Proofread names and details.** A misspelled name or wrong date undoes the rest of the email. Read it once out loud, or run it through the [paraphraser](/tools/ai/paraphraser) to see the sentences with fresh eyes.',
+          '**Avoid** all caps, exclamation-heavy openers, reply-all when only one person needs the message, and vague sign-offs like "Waiting for your response" with no deadline.',
+        ],
+      },
+      {
+        heading: 'How the Professional Email Writer works',
+        paragraphs: [
+          'Choose a purpose (follow-up, thank you, request, pitch or apology) and a tone (formal, polite or assertive), enter the recipient\u2019s name and a sentence or two about what you want to cover, and the tool drafts a complete email with a subject line, greeting, body, call to action and sign-off. Copy it, paste it into your mail client, and edit the details until it sounds like you.',
+          'The tool runs **entirely in your browser**. Your talking points are never uploaded to a server and nothing is stored \u2014 the same standard we apply to every tool on the site, as explained in our [guide to browser-side tools](/blog/how-browser-side-tools-protect-privacy). Treat the output as a first draft: personalize the specifics, check every fact, and adjust the tone to suit the real relationship before you hit send.',
+        ],
+      },
+    ],
+    extraFaqs: [
+      {
+        question: 'Is this email writer free?',
+        answer:
+          'Yes. The Professional Email Writer is free to use with no sign-up, no watermarks and no usage limits. Generate as many drafts as you need.',
+      },
+      {
+        question: 'Does it store my text?',
+        answer:
+          'No. The tool runs 100% in your browser: your recipient name and talking points are processed locally on your device and are never uploaded to a server or saved by us.',
+      },
+      {
+        question: 'What tone should I use for a manager vs a client?',
+        answer:
+          'For a manager you know well, a polite tone usually works; for senior leaders or official requests, go formal. For clients, polite is a safe default, switching to formal on first contact or in industries like law and finance. Use assertive only when a deadline requires it.',
+      },
+    ],
+  },
 };
 
 export function getToolGuide(slug: string): ToolGuide | undefined {
